@@ -1,13 +1,19 @@
 package EDD;
 
-//Clase para crear un objecto de tipo grafo
+/**
+ * Clase Grafo con Matriz de Adyacencia
+ * @author Ricardo Machado
+ */
 public class GrafoMA {
 
     private int maxVertices;
     private int numVertices;
     private double[][] matrizA;
 
-    //Constructor de la clase grafoMA
+    /**
+     * Constructor de la clase Grafo
+     * @param maxVertices maxVertices indica el máximo de dimensiones de la matriz de Adyacencia del grafo. 
+     */
     public GrafoMA(int maxVertices) {
         this.maxVertices = maxVertices;
         this.numVertices = 0;
@@ -38,22 +44,37 @@ public class GrafoMA {
         this.matrizA = matrizA;
     }
     
-    
+    /**
+     * Método para saber si el grafo está vacío.
+     * @return Retorna un tipo de dato booleano.
+     */
     public boolean GrafoVacio(){
         return numVertices == 0;
     }
     
-    // Método para asignar aristas entre vertices
+    /**
+     * Método para insertar arista en un vertice de la Matriz de Adyacencia del grafo. Recordar que es no dirigido.
+     * @param v1 vertice origen.
+     * @param v2 vertice destino.
+     * @param ponteracion peso de arista entre los vertices v1 y v2. 
+     */
     public void insertarArista(int v1, int v2, double ponteracion){
         matrizA[v1][v2] = matrizA[v2][v1] = ponteracion;
     }
     
-    //Método para eliminar aristas entre vertices
+    /**
+     * Método para eliminar la arista de un vertice. Recordar que es no dirigido.
+     * @param v1 vertice origen.
+     * @param v2 vertice destino.
+     */
     public void eliminarArista(int v1, int v2){
         matrizA[v1][v2] = matrizA[v2][v1] = 0;
     }
     
-    //Método para insertar vertice en el grafo
+    /**
+     * Método para añadir uno o más vertices a la matriz de adyacencia del Grafo.
+     * @param n cantidad de vertices que se desea añadir.
+     */
     public void insertarVertice(int n){
         if(n > maxVertices-numVertices){
             System.out.println("El número de vertices se ha superado");
@@ -66,7 +87,10 @@ public class GrafoMA {
         }
     }
     
-    //Método para eliminar Vertice del Grafo
+    /**
+     * Método para eliminar un vertice del Grafo a través de la eliminación de las aristas y reducción de la matriz de adyacencia.
+     * @param vertice número entero que indica la ciudad o vertice que sea eliminar.
+     */
     public void eliminarVertice(int vertice){
         if(vertice >= numVertices){
             System.out.println("Error vertice inválido");
@@ -85,7 +109,10 @@ public class GrafoMA {
         }
     }
     
-    //Método para imprimir la matriz de Adyacencia del grafo
+    /**
+     * Método para imprimir la matriz de Adyacencia del Grafo.
+     * @return Retorna un String con la información de la matriz de las filas y columnas.
+     */
     public String imprimirMatriz(){
         String strMatriz = "";
         System.out.println ("La matriz contiene " + numVertices + " vértices: \n");
