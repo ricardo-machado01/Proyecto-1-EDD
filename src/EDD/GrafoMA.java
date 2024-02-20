@@ -1,12 +1,13 @@
 package EDD;
 
-
+//Clase para crear un objecto de tipo grafo
 public class GrafoMA {
 
     private int maxVertices;
     private int numVertices;
     private double[][] matrizA;
 
+    //Constructor de la clase grafoMA
     public GrafoMA(int maxVertices) {
         this.maxVertices = maxVertices;
         this.numVertices = 0;
