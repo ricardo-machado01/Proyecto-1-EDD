@@ -1,5 +1,5 @@
 
-package proyecto1edd;
+package Main;
 
 
 public class Proyecto1EDD {
