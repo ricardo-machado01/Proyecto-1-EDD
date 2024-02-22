@@ -3,32 +3,42 @@ package EDD;
 import EDD.GrafoMA;
 import java.util.Random;
 
+/**
+ * Esta clase representa a la hormiga.
+ * @author nicolasplanas
+ */
 public class CAnt {
-
-    // GRADO DE IMPORTANCIA DE LA FEROMONA!
+    
+    // GRADO DE IMPORTANCIA DE LA FEROMONA
     private double α;
     
-    // GRADO DE VISIBILIDAD DE LA CIUDAD!
+    // GRADO DE VISIBILIDAD DE LA CIUDAD
     private double β;
     
-    // CIUDAD ACTUAL EN DONDE SE ENCUENTRA LA HORMIGA!
+    // CIUDAD ACTUAL EN DONDE SE ENCUENTRA LA HORMIGA
     private int r;
 
-    // CIUDAD DESTINO EN DONDE SE ENCUENTRA LA COMIDA!
+    // CIUDAD DESTINO EN DONDE SE ENCUENTRA LA COMIDA
     private int s;
     
-    // DETERMINA SI LA HORMIGA LLEGO AL DESTINO O SE QUEDO ENCERRADA EN UNA CIUDAD!
+    // DETERMINA SI LA HORMIGA LLEGO AL DESTINO O SE QUEDO ENCERRADA EN UNA CIUDAD
     private boolean trapped;
 
-    // DISTANCIA ENTRE LAS CIUDADES "r" y "u"!
+    // DISTANCIA ENTRE LAS CIUDADES "r" y "u"
     double drs;
     
-    // VALOR DE APRENDIZAJE!
+    // VALOR DE APRENDIZAJE
     double Q;
 
-    // CIUDADES RECORRIDAS!
+    // CIUDADES RECORRIDAS
     int[] movementHistory;
-
+    
+    /**
+     * Este es el constructor de la clase hormiga y recibe tres parametros.
+     * @param matrix
+     * @param r
+     * @param s 
+     */
     public CAnt (GrafoMA matrix, int r, int s) {
         α = 1;
         β = 2;
@@ -40,12 +50,12 @@ public class CAnt {
         movementHistory[0] = r;
     }
 
-    private double m(double drs){
+    private double m(double drs, double t){
         return Math.pow(t, α) * Math.pow((Q/drs), β);
     }
 
     // CAMBIAR "matrix" POR "grafo"!
-    public int movementProbability(GrafoMA matrix) {
+    public int movementProbability(GrafoMA matrix, double[] t) {
         if (r == s) {
             return r;
         } else {
@@ -71,7 +81,7 @@ public class CAnt {
                     }
                 if (repeat == 0) {
                     drs = matrix.getMatrizA()[r - 1][c];
-                    Mk += m(drs);
+                    Mk += m(drs, t[citiesCont]);
                     idxCities[citiesCont] = c;
                     citiesCont ++;
                     }
@@ -94,7 +104,7 @@ public class CAnt {
                     }
                 if (repeat == 0) {
                     drs = matrix.getMatrizA()[r - 1][c];
-                    Probabilities[idx] = m(drs)/Mk;
+                    Probabilities[idx] = m(drs, t[citiesCont])/Mk;
                     idx ++;
                 }
             }
@@ -140,7 +150,28 @@ public class CAnt {
     }
 
     // CALCULAR FEROMONA!
-    
+    public void pheromoneUpdate(GrafoMA grafo, double t, double[][] pheromoneQuantity, double currentDistance, double shortestDistance) {
+        
+        for (int i = 0; i < movementHistory.length && movementHistory[i + 1] != 0; i++) {
+            int x = movementHistory[i] - 1;
+            int y = movementHistory[i + 1] - 1;
+            double tk = 1/grafo.getMatrizA()[x][y];
+
+            currentDistance += grafo.getMatrizA()[x][y];
+
+            if (shortestDistance == 0) {
+                shortestDistance = currentDistance;
+            } else if (currentDistance < shortestDistance) {
+                shortestDistance = currentDistance;
+            }
+
+            if (pheromoneQuantity[x][y] == 0) {
+                pheromoneQuantity[x][y] += (t + tk);
+            } else {
+                pheromoneQuantity[x][y] += tk;
+            }
+        }
+    }
     
     
     // MÉTODOS SET!

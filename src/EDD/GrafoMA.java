@@ -58,7 +58,7 @@ public class GrafoMA {
      * @param v2 vertice destino.
      * @param ponteracion peso de arista entre los vertices v1 y v2. 
      */
-    public void insertarArista(int v1, int v2, double ponteracion){
+    public void insertEdge(int v1, int v2, double ponteracion){
         matrizA[v1][v2] = matrizA[v2][v1] = ponteracion;
     }
     
@@ -67,7 +67,7 @@ public class GrafoMA {
      * @param v1 vertice origen.
      * @param v2 vertice destino.
      */
-    public void eliminarArista(int v1, int v2){
+    public void deleteEdge(int v1, int v2){
         matrizA[v1][v2] = matrizA[v2][v1] = 0;
     }
     
@@ -75,7 +75,7 @@ public class GrafoMA {
      * Método para añadir uno o más vertices a la matriz de adyacencia del Grafo.
      * @param n cantidad de vertices que se desea añadir.
      */
-    public void insertarVertice(int n){
+    public void insertVertex(int n){
         if(n > maxVertices-numVertices){
             System.out.println("El número de vertices se ha superado");
         }else{
@@ -91,7 +91,7 @@ public class GrafoMA {
      * Método para eliminar un vertice del Grafo a través de la eliminación de las aristas y reducción de la matriz de adyacencia.
      * @param vertice número entero que indica la ciudad o vertice que sea eliminar.
      */
-    public void eliminarVertice(int vertice){
+    public void deleteVertex(int vertice){
         if(vertice >= numVertices){
             System.out.println("Error vertice inválido");
         }else{
@@ -113,7 +113,7 @@ public class GrafoMA {
      * Método para imprimir la matriz de Adyacencia del Grafo.
      * @return Retorna un String con la información de la matriz de las filas y columnas.
      */
-    public String imprimirMatriz(){
+    public String printMatrix(){
         String strMatriz = "";
         System.out.println ("La matriz contiene " + numVertices + " vértices: \n");
         for (int i = 0; i < numVertices; i++) {
