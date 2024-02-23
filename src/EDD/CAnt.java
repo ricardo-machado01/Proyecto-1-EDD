@@ -21,6 +21,9 @@ public class CAnt {
     // CIUDAD DESTINO EN DONDE SE ENCUENTRA LA COMIDA
     private int s;
     
+    // CREAMOS UN ARRAY QUE CONTIENE LA CANTIDAD DE FEROMONA PARA CADA ARISTA DE LAS CIUDADES ADYACENTES A "r"!
+    //private double[] tf;
+    
     // DETERMINA SI LA HORMIGA LLEGO AL DESTINO O SE QUEDO ENCERRADA EN UNA CIUDAD
     private boolean trapped;
 
@@ -50,12 +53,13 @@ public class CAnt {
         movementHistory[0] = r;
     }
 
+    // FÓRMULA PARA CALCULAR τ*η!
     private double m(double drs, double t){
         return Math.pow(t, α) * Math.pow((Q/drs), β);
     }
 
-    // CAMBIAR "matrix" POR "grafo"!
-    public int movementProbability(GrafoMA matrix, double[] t) {
+    public int movementProbability(GrafoMA matrix, double[][] pheromoneQuantity) {
+        
         if (r == s) {
             return r;
         } else {
@@ -68,7 +72,7 @@ public class CAnt {
         
         // INDICES DE LAS CIUDADES!
         int[] idxCities = new int[matrix.getMaxVertices()];
-
+        
         // CALCULAMOS LA SUMATORIA "Mk" VALIDANDO QUE LA HORMIGA NO HAYA ESTADO EN ALGUNA DE LAS CIUDADES ANTES!
         for (int c = 0; c < matrix.getNumVertices(); c++) {
             int repeat = 0;
@@ -81,7 +85,7 @@ public class CAnt {
                     }
                 if (repeat == 0) {
                     drs = matrix.getMatrizA()[r - 1][c];
-                    Mk += m(drs, t[citiesCont]);
+                    Mk += m(drs, pheromoneQuantity[r - 1][c]);
                     idxCities[citiesCont] = c;
                     citiesCont ++;
                     }
@@ -89,7 +93,7 @@ public class CAnt {
             }
 
         // CREAMOS UNA VARIABLE PARA ALMACENAR LAS PROBABILIDADES DE DESPLACE DE CADA CIUDAD!
-        double[] Probabilities = new double[citiesCont];
+        double[] probabilities = new double[citiesCont];
         int idx = 0;
         
         // CALCULAMOS EL PORCENTAJE DE PROBABILIDAD DE DESPLAZAMIENTO PARA CADA CIUDAD DEL CONJUNTO "Mk"!
@@ -104,14 +108,14 @@ public class CAnt {
                     }
                 if (repeat == 0) {
                     drs = matrix.getMatrizA()[r - 1][c];
-                    Probabilities[idx] = m(drs, t[citiesCont])/Mk;
+                    probabilities[idx] = m(drs, pheromoneQuantity[r - 1][c])/Mk;
                     idx ++;
+                    }
                 }
             }
-        }
 
         // DETERMINAMOS SI HAY DESPLAZAMIENTO Y A CUAL CIUDAD TIENE LA MAYOR PROBABILIDAD DE DESPLAZARSE!
-        if (Probabilities.length == 0) {
+        if (probabilities.length == 0) {
             trapped = true;
         }
         else {
@@ -123,16 +127,17 @@ public class CAnt {
             Random x = new Random();
             double randomNum = x.nextDouble(0,1);
 
-            for (int i = 0; i < Probabilities.length; i++) {
-                f += Probabilities[i];
+            for (int i = 0; i < probabilities.length; i++) {
+                f += probabilities[i];
                 if (randomNum >= o && randomNum <= f) {
+                    System.out.println("\nRango: " + o + " < " + randomNum + " < " + f);
                     this.setR(idxCities[i] + 1);
                     break;
                 } else {
                     o = f;
+                    }
                 }
             }
-        }
 
         // AGREGAMOS LA CIUDAD A DONDE SE DESPLAZO LA HORMIGA A SU HISTORIAL!
         for (int i = 0; i < movementHistory.length; i++) {
@@ -148,31 +153,6 @@ public class CAnt {
         return r;
         }
     }
-
-    // CALCULAR FEROMONA!
-    public void pheromoneUpdate(GrafoMA grafo, double t, double[][] pheromoneQuantity, double currentDistance, double shortestDistance) {
-        
-        for (int i = 0; i < movementHistory.length && movementHistory[i + 1] != 0; i++) {
-            int x = movementHistory[i] - 1;
-            int y = movementHistory[i + 1] - 1;
-            double tk = 1/grafo.getMatrizA()[x][y];
-
-            currentDistance += grafo.getMatrizA()[x][y];
-
-            if (shortestDistance == 0) {
-                shortestDistance = currentDistance;
-            } else if (currentDistance < shortestDistance) {
-                shortestDistance = currentDistance;
-            }
-
-            if (pheromoneQuantity[x][y] == 0) {
-                pheromoneQuantity[x][y] += (t + tk);
-            } else {
-                pheromoneQuantity[x][y] += tk;
-            }
-        }
-    }
-    
     
     // MÉTODOS SET!
     public void setR(int r) {
