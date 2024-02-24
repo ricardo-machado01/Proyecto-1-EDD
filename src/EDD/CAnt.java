@@ -1,5 +1,6 @@
 package EDD;
 
+// SE HACEN LOS IMPORTS DE LA CLASE Y LIBRERÍA NECESARIA!
 import EDD.GrafoMA;
 import java.util.Random;
 
@@ -9,13 +10,13 @@ import java.util.Random;
  */
 public class CAnt {
     
-    // GRADO DE IMPORTANCIA DE LA FEROMONA
+    // GRADO DE IMPORTANCIA DE LA FEROMONA.
     private double α;
     
-    // GRADO DE VISIBILIDAD DE LA CIUDAD
+    // GRADO DE VISIBILIDAD DE LA CIUDAD.
     private double β;
     
-    // CIUDAD ACTUAL EN DONDE SE ENCUENTRA LA HORMIGA
+    // CIUDAD ACTUAL EN DONDE SE ENCUENTRA LA HORMIGA.
     private int r;
 
     // CIUDAD DESTINO EN DONDE SE ENCUENTRA LA COMIDA
@@ -130,7 +131,6 @@ public class CAnt {
             for (int i = 0; i < probabilities.length; i++) {
                 f += probabilities[i];
                 if (randomNum >= o && randomNum <= f) {
-                    System.out.println("\nRango: " + o + " < " + randomNum + " < " + f);
                     this.setR(idxCities[i] + 1);
                     break;
                 } else {

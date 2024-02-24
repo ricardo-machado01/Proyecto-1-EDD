@@ -1,5 +1,7 @@
 package EDD;
 
+import javax.swing.JOptionPane;
+
 /**
  * Clase Grafo con Matriz de Adyacencia
  * @author Ricardo Machado
@@ -93,7 +95,7 @@ public class GrafoMA {
      */
     public void deleteVertex(int vertice){
         if(vertice >= numVertices){
-            System.out.println("Error vertice inválido");
+            JOptionPane.showInternalMessageDialog(null, "Error vertice inválido");
         }else{
             for (int i = vertice; i < numVertices; i++) {
                 for (int j = 0; j < numVertices; j++) {
@@ -115,7 +117,6 @@ public class GrafoMA {
      */
     public String printMatrix(){
         String strMatriz = "";
-        System.out.println ("La matriz contiene " + numVertices + " vértices: \n");
         for (int i = 0; i < numVertices; i++) {
             for (int j = 0; j < numVertices; j++) {
                 strMatriz += "[" + matrizA[i][j] + "]" + " ";

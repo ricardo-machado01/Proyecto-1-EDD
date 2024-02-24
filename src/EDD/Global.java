@@ -1,13 +1,13 @@
 package EDD;
 
 public class Global {
-    private static GrafoMA colacao = new GrafoMA(20);
+    private static GrafoMA grafo = new GrafoMA(20);
     
     public static GrafoMA getGrafo() {
-        return colacao;
+        return grafo;
     }
     
     public static void setGrafo(GrafoMA parametro) {
-        colacao = parametro;
+        grafo = parametro;
     }
 }

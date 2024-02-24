@@ -7,8 +7,9 @@ import javax.swing.JOptionPane;
 
 public class Simulation extends javax.swing.JFrame {
     private GrafoMA grafo = Global.getGrafo();
+    private int[] p;
     private double[][] pheromoneQuantity;
-    
+
     public Simulation() {
         initComponents();
         this.setVisible(rootPaneCheckingEnabled);
@@ -217,13 +218,13 @@ public class Simulation extends javax.swing.JFrame {
         });
         getContentPane().add(evaporation_factor, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 40, -1));
 
-        jButton3.setText("chris me la chupa");
+        jButton3.setText("VER MATRIZ");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 410, -1, -1));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 400, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -249,8 +250,9 @@ public class Simulation extends javax.swing.JFrame {
     }//GEN-LAST:event_ants_amountActionPerformed
 
     private void ACAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ACAActionPerformed
-        Homescreen v1 = new Homescreen();
         this.setVisible(false);
+        Homescreen v1 = new Homescreen();
+        v1.setArray(getP());
         v1.setVisible(true);
     }//GEN-LAST:event_ACAActionPerformed
 
@@ -331,12 +333,12 @@ public class Simulation extends javax.swing.JFrame {
 
                             delta_t += 1/currentDistance;
 
-                            if (shortestDistance == 0) {
+                            if (shortestDistance == 0 || currentDistance < shortestDistance) {
                                 shortestDistance = currentDistance;
-                            } else if (currentDistance < shortestDistance) {
-                                shortestDistance = currentDistance;
+                                optimalPath = printPath(hormiga);
+                                setP(hormiga.getMovementHistory());
+                                System.out.println(this.printP(getP()));
                             }
-                            optimalPath = printPath(hormiga);
                             result += "HORMIGA " + (cont + 1) + ":\n" + "DISTANCIA RECORRIDA: " + currentDistance + "\n" + printPath(hormiga) + "\n";
                             cont ++;
                         }
@@ -396,6 +398,36 @@ public class Simulation extends javax.swing.JFrame {
         return (1 - p) * t + d_t;
     }
 
+    public void setP(int[] array) {
+        p = array;
+    }
+    
+    public int[] getP() {
+        return p;
+    }
+    
+    private String printP(int[] p) {
+        String pString = "Recorrido: ";
+        
+        for (int i = 0; i < p.length; i++) {
+            if (i == 0) {
+                pString += "[";
+            }
+            if (p[i] != 0) {
+                pString += Integer.toString(p[i]);
+            }
+            if (p[i + 1] != 0) {
+                pString += ",";
+            }
+            else {
+                pString += "]\n";
+                break;
+            }
+        }
+    return pString;
+    }
+    
+    
     /**
      * @param args the command line arguments
      */

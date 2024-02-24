@@ -13,11 +13,10 @@ import EDD.Global;
 public class Homescreen extends javax.swing.JFrame {
 
     private GrafoMA grafo = Global.getGrafo();
-    private int[] citiesVisited;
-
+    private int[] array;
+    
     public Homescreen() {
         initComponents();
-        citiesVisited = new int[grafo.getMaxVertices()];
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
@@ -152,7 +151,7 @@ public class Homescreen extends javax.swing.JFrame {
 
     private void manage_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manage_txtActionPerformed
         if (txtMatriz.getText().isBlank()) {
-            JOptionPane.showMessageDialog(null, "No haz importado ningún archivo");
+            JOptionPane.showMessageDialog(null, "No haz importado ningún archivo!");
         } else {
         AddOrDeleteCity v2 = new AddOrDeleteCity();
         this.setVisible(false);
@@ -162,21 +161,21 @@ public class Homescreen extends javax.swing.JFrame {
 
     private void create_antsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_create_antsActionPerformed
         if (txtMatriz.getText().isBlank()) {
-            JOptionPane.showMessageDialog(null, "No haz importado ningún archivo");
+            JOptionPane.showMessageDialog(null, "No haz importado ningún archivo!");
         } else {
-            Simulation v3 = new Simulation();
             this.setVisible(false);
+            Simulation v3 = new Simulation();
             v3.setVisible(true);
         }
     }//GEN-LAST:event_create_antsActionPerformed
 
     private void show_graphActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_show_graphActionPerformed
         if (txtMatriz.getText().isBlank()) {
-            JOptionPane.showMessageDialog(null, "No haz importado ningún archivo");
+            JOptionPane.showMessageDialog(null, "No haz importado ningún archivo!");
         } else {
         GraphStream grafico = new GraphStream();
         int numVertices = grafo.getNumVertices();
-        grafico.PintarGrafo(numVertices, grafo.getMatrizA(), citiesVisited);
+        grafico.PintarGrafo(numVertices, grafo.getMatrizA(), array);
         }
     }//GEN-LAST:event_show_graphActionPerformed
 
@@ -219,9 +218,13 @@ public class Homescreen extends javax.swing.JFrame {
             }
         });
     }
-    
+        
     public GrafoMA getGrafo() {
         return grafo;
+    }
+    
+    public void setArray(int[] array) {
+        this.array = array;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
