@@ -43,6 +43,7 @@ public class Homescreen extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        save_txt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(560, 530));
@@ -66,7 +67,7 @@ public class Homescreen extends javax.swing.JFrame {
         txtMatriz.setRows(5);
         jScrollPane1.setViewportView(txtMatriz);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 240, 150));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 240, 150));
 
         import_txt.setFont(new java.awt.Font("Aspekta", 0, 13)); // NOI18N
         import_txt.setForeground(new java.awt.Color(102, 102, 102));
@@ -76,7 +77,7 @@ public class Homescreen extends javax.swing.JFrame {
                 import_txtActionPerformed(evt);
             }
         });
-        getContentPane().add(import_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 330, 120, -1));
+        getContentPane().add(import_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 300, 120, -1));
 
         manage_txt.setFont(new java.awt.Font("Aspekta", 0, 13)); // NOI18N
         manage_txt.setForeground(new java.awt.Color(102, 102, 102));
@@ -86,7 +87,7 @@ public class Homescreen extends javax.swing.JFrame {
                 manage_txtActionPerformed(evt);
             }
         });
-        getContentPane().add(manage_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 370, 120, -1));
+        getContentPane().add(manage_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 340, 120, -1));
 
         create_ants.setFont(new java.awt.Font("Aspekta", 1, 13)); // NOI18N
         create_ants.setForeground(new java.awt.Color(102, 102, 102));
@@ -96,7 +97,7 @@ public class Homescreen extends javax.swing.JFrame {
                 create_antsActionPerformed(evt);
             }
         });
-        getContentPane().add(create_ants, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 410, 120, -1));
+        getContentPane().add(create_ants, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 380, 120, -1));
 
         show_graph.setFont(new java.awt.Font("Aspekta", 0, 13)); // NOI18N
         show_graph.setForeground(new java.awt.Color(102, 102, 102));
@@ -106,7 +107,7 @@ public class Homescreen extends javax.swing.JFrame {
                 show_graphActionPerformed(evt);
             }
         });
-        getContentPane().add(show_graph, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 450, 120, -1));
+        getContentPane().add(show_graph, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 420, 120, -1));
 
         jButton1.setText("X");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -120,13 +121,21 @@ public class Homescreen extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(102, 102, 102));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("AL ARCHIVO TXT");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, 190, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 190, -1));
 
         jLabel4.setFont(new java.awt.Font("Aspekta", 0, 13)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 102, 102));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("MATRIZ CORRESPONDIENTE");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, 210, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, 210, -1));
+
+        save_txt.setText("GUARDAR TXT");
+        save_txt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                save_txtActionPerformed(evt);
+            }
+        });
+        getContentPane().add(save_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 460, 120, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -175,13 +184,27 @@ public class Homescreen extends javax.swing.JFrame {
         } else {
         GraphStream grafico = new GraphStream();
         int numVertices = grafo.getNumVertex();
-        grafico.PintarGrafo(numVertices, grafo.getMatrixA(), array);
+        grafico.paintGraph(numVertices, grafo.getMatrixA(), array);
         }
     }//GEN-LAST:event_show_graphActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void save_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_save_txtActionPerformed
+        if(!txtMatriz.getText().isBlank()){
+            FileChooser file = new FileChooser();
+            try {
+                file.saveFile(grafo.getNumVertex(), grafo.getMatrixA());
+                JOptionPane.showMessageDialog(null, "¡Archivo txt guardado con éxito!");
+            } catch (IOException ex) {
+                Logger.getLogger(Homescreen.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "No haz importado ningún archivo!");
+        }
+    }//GEN-LAST:event_save_txtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -237,6 +260,7 @@ public class Homescreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton manage_txt;
+    private javax.swing.JButton save_txt;
     private javax.swing.JButton show_graph;
     private javax.swing.JTextArea txtMatriz;
     // End of variables declaration//GEN-END:variables

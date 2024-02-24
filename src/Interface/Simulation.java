@@ -271,9 +271,11 @@ public class Simulation extends javax.swing.JFrame {
         } else {
             try {
                 if (Integer.parseInt(r.getText()) == 0 || Integer.parseInt(s.getText()) == 0) {
-                    JOptionPane.showMessageDialog(null, "Llene los parámetros obligatorios!");
-                } else if (Integer.parseInt(r.getText()) < 0 || Integer.parseInt(s.getText()) < 0 || Double.parseDouble(pheromone_grade.getText()) < 0 || Double.parseDouble(visibility_grade.getText()) < 0) {
-                    JOptionPane.showMessageDialog(null, "Los valores no pueden ser negativos!");
+                    JOptionPane.showMessageDialog(null, "¡Una de las ciudades ingresadas no existe!");
+                }else if(Integer.parseInt(r.getText()) > grafo.getNumVertex() || Integer.parseInt(s.getText()) > grafo.getNumVertex()){
+                    JOptionPane.showMessageDialog(null, "¡Una de las ciudades ingresadas no existe!");
+                }else if (Integer.parseInt(r.getText()) < 0 || Integer.parseInt(s.getText()) < 0 || Double.parseDouble(pheromone_grade.getText()) < 0 || Double.parseDouble(visibility_grade.getText()) < 0) {
+                    JOptionPane.showMessageDialog(null, "¡Los valores no pueden ser negativos!");
                 } else {
 
                     // VARIABLE STRING PARA EL ÁREA DE TEXTO.
@@ -459,9 +461,7 @@ public class Simulation extends javax.swing.JFrame {
     }
     
     
-    /**
-     * @param args the command line arguments
-     */
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

@@ -20,7 +20,7 @@ public class GraphStream {
      * @param matrix    Sirve para obtener las aristas y crear las conexiones.
      * @param citiesVisited Sirve para cambiar el color a los vertices por donde pasa la hormiga.
      */
-    public void PintarGrafo(int numVertex, double[][] matrix, int[]citiesVisited) {
+    public void paintGraph(int numVertex, double[][] matrix, int[]citiesVisited) {
         
         System.setProperty("org.graphstream.ui", "swing");
 	

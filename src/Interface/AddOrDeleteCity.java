@@ -141,7 +141,13 @@ public class AddOrDeleteCity extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEliminarVerticeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarVerticeActionPerformed
-        grafo.deleteVertex(Integer.parseInt(ciudadEliminar.getText()) - 1);
+        if(!"".equalsIgnoreCase(ciudadEliminar.getText())){
+            grafo.deleteVertex(Integer.parseInt(ciudadEliminar.getText()) - 1);
+            JOptionPane.showMessageDialog(null,"¡Ciudad eliminada con éxito!");
+        }else{
+            JOptionPane.showMessageDialog(null, "Debes indicar el número de ciudad a eliminar");
+        }
+        
     }//GEN-LAST:event_btnEliminarVerticeActionPerformed
 
     private void btnAgregarVerticeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarVerticeActionPerformed
@@ -154,6 +160,7 @@ public class AddOrDeleteCity extends javax.swing.JFrame {
                 grafo.insertEdge(grafo.getNumVertex()-1,Integer.parseInt(arista[0]) - 1, Double.parseDouble(arista[1]));
             }
             txtAristas.setText("");
+            JOptionPane.showMessageDialog(null, "Ciudad " + grafo.getNumVertex() + " creada con sus aristas");
         }else{
             JOptionPane.showMessageDialog(null, "Debe llenar la información de las aristas");
         }
