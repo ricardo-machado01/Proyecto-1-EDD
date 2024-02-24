@@ -20,39 +20,39 @@ import javax.swing.filechooser.FileSystemView;
  */
 public class FileChooser {
 
-    private int numVertices = 0;
-    private String[] aristas = new String[50];
-    private int numAristas = 0;
+    private int numVertex = 0;
+    private String[] edges = new String[50];
+    private int numEdges = 0;
 
     
-    public String[] getAristas() {
-        return aristas;
+    public String[] getEdges() {
+        return edges;
     }
 
-    public void setAristas(String[] aristas) {
-        this.aristas = aristas;
+    public void setEdges(String[] edges) {
+        this.edges = edges;
     }
 
-    public int getNumVertices() {
-        return numVertices;
+    public int getNumVertex() {
+        return numVertex;
     }
 
-    public void setNumVertices(int numVertices) {
-        this.numVertices = numVertices;
+    public void setNumVertex(int numVertex) {
+        this.numVertex = numVertex;
     }
 
-    public int getNumAristas() {
-        return numAristas;
+    public int getNumEdges() {
+        return numEdges;
     }
 
-    public void setNumAristas(int nroAristas) {
-        this.numAristas = nroAristas;
+    public void setNumEdges(int numEdges) {
+        this.numEdges = numEdges;
     }
     
     /**
      * Método para leer un archivo txt desde un directorio.
      */
-    public void leerArchivo() throws FileNotFoundException, IOException{
+    public void readFile() throws FileNotFoundException, IOException{
         
         boolean ciudad = false; 
         int i = 0;
@@ -85,10 +85,10 @@ public class FileChooser {
                                 line = in.readLine();
                             }
                             if(ciudad == true){
-                                numVertices++;
+                                numVertex++;
                             }else{
-                                aristas[i] = line;
-                                numAristas++;
+                                edges[i] = line;
+                                numEdges++;
                                 i++;
                             }
                             line = in.readLine();
@@ -99,10 +99,10 @@ public class FileChooser {
     
     /**
      * Método para guardar un archivo txt del grafo en la carpeta del proyecto
-     * @param numVertices Indica la cantidad de ciudades que tiene el grafo actualmente.
-     * @param MatrizAdyacencia Sirve para obtener las aristas por cada ciudad.
+     * @param numVertex Indica la cantidad de ciudades que tiene el grafo actualmente.
+     * @param MatrixA Sirve para obtener las aristas por cada ciudad.
      */
-    public void guardarArchivo(int numVertices, double[][] MatrizAdyacencia) throws IOException{
+    public void saveFile(int numVertex, double[][] MatrixA) throws IOException{
         
         //Creando el archivo txt
         File file = new File("GrafoUsuario.txt");
@@ -112,17 +112,17 @@ public class FileChooser {
         writer.write("ciudad"+"\n");
         
         //Llenando el txt con la cantidad de ciudades.
-        for (int i = 1; i <= numVertices; i++) {
+        for (int i = 1; i <= numVertex; i++) {
             writer.write(Integer.toString(i)+"\n");
         }
         
         writer.write("aristas"+"\n");
         //Llenando el txt con la cantidad de aristas.
-        for (int i = 0; i < numVertices; i++) {
-            for (int j = i; j < numVertices; j++) {
-                if(MatrizAdyacencia[i][j] != 0){
-                    String arista = Integer.toString(i+1) + "," + Integer.toString(j+1) + ","+ String.valueOf(MatrizAdyacencia[i][j] + "\n");
-                    writer.write(arista);
+        for (int i = 0; i < numVertex; i++) {
+            for (int j = i; j < numVertex; j++) {
+                if(MatrixA[i][j] != 0){
+                    String strEdges = Integer.toString(i+1) + "," + Integer.toString(j+1) + ","+ String.valueOf(MatrixA[i][j] + "\n");
+                    writer.write(strEdges);
                 }
             }
         }

@@ -1,7 +1,6 @@
 package EDD;
 
 // SE HACEN LOS IMPORTS DE LA CLASE Y LIBRERÍA NECESARIA!
-import EDD.GrafoMA;
 import java.util.Random;
 
 /**
@@ -50,7 +49,7 @@ public class CAnt {
         this.s = s;
         this.Q = 1;
         this.trapped = false;
-        this.movementHistory = new int[matrix.getMaxVertices()];
+        this.movementHistory = new int[matrix.getMaxVertex()];
         movementHistory[0] = r;
     }
 
@@ -72,12 +71,12 @@ public class CAnt {
         int citiesCont = 0;
         
         // INDICES DE LAS CIUDADES!
-        int[] idxCities = new int[matrix.getMaxVertices()];
+        int[] idxCities = new int[matrix.getMaxVertex()];
         
         // CALCULAMOS LA SUMATORIA "Mk" VALIDANDO QUE LA HORMIGA NO HAYA ESTADO EN ALGUNA DE LAS CIUDADES ANTES!
-        for (int c = 0; c < matrix.getNumVertices(); c++) {
+        for (int c = 0; c < matrix.getNumVertex(); c++) {
             int repeat = 0;
-            if (matrix.getMatrizA()[r - 1][c] > 0) {
+            if (matrix.getMatrixA()[r - 1][c] > 0) {
                 for (int i = 0; i < movementHistory.length; i++) {
                     if (movementHistory[i] == c + 1) {
                         repeat ++;
@@ -85,7 +84,7 @@ public class CAnt {
                         }
                     }
                 if (repeat == 0) {
-                    drs = matrix.getMatrizA()[r - 1][c];
+                    drs = matrix.getMatrixA()[r - 1][c];
                     Mk += m(drs, pheromoneQuantity[r - 1][c]);
                     idxCities[citiesCont] = c;
                     citiesCont ++;
@@ -98,9 +97,9 @@ public class CAnt {
         int idx = 0;
         
         // CALCULAMOS EL PORCENTAJE DE PROBABILIDAD DE DESPLAZAMIENTO PARA CADA CIUDAD DEL CONJUNTO "Mk"!
-        for (int c = 0; c < matrix.getNumVertices(); c++) {
+        for (int c = 0; c < matrix.getNumVertex(); c++) {
             int repeat = 0;
-            if (matrix.getMatrizA()[r - 1][c] > 0) {
+            if (matrix.getMatrixA()[r - 1][c] > 0) {
                 for (int i = 0; i < movementHistory.length; i++) {
                     if (movementHistory[i] == c + 1) {
                         repeat ++;
@@ -108,7 +107,7 @@ public class CAnt {
                         }
                     }
                 if (repeat == 0) {
-                    drs = matrix.getMatrizA()[r - 1][c];
+                    drs = matrix.getMatrixA()[r - 1][c];
                     probabilities[idx] = m(drs, pheromoneQuantity[r - 1][c])/Mk;
                     idx ++;
                     }

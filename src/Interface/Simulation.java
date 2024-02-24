@@ -15,7 +15,7 @@ public class Simulation extends javax.swing.JFrame {
         this.setVisible(rootPaneCheckingEnabled);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        this.pheromoneQuantity = new double[grafo.getMaxVertices()][grafo.getMaxVertices()];
+        this.pheromoneQuantity = new double[grafo.getMaxVertex()][grafo.getMaxVertex()];
     }
 
     /**
@@ -279,7 +279,7 @@ public class Simulation extends javax.swing.JFrame {
                     String optimalPath = "";
 
                     int antsAmount;
-                    double m = grafo.getNumVertices();
+                    double m = grafo.getNumVertex();
 
                     // FEROMONA INICIAL!
                     double ti = 1/m;
@@ -287,8 +287,8 @@ public class Simulation extends javax.swing.JFrame {
                     int cycles = Integer.parseInt(cycles_input.getText());
                     int cont_c = 0;
 
-                    for (int i = 0; i < grafo.getMaxVertices(); i++) {
-                        for (int j = 0; j < grafo.getMaxVertices(); j++) {
+                    for (int i = 0; i < grafo.getMaxVertex(); i++) {
+                        for (int j = 0; j < grafo.getMaxVertex(); j++) {
                             pheromoneQuantity[i][j] = ti;
                         }
                     }
@@ -318,14 +318,14 @@ public class Simulation extends javax.swing.JFrame {
                             for (int i = 0; i < hormiga.getMovementHistory().length && hormiga.getMovementHistory()[i + 1] != 0; i++) {
                                 int x = hormiga.getMovementHistory()[i] - 1;
                                 int y = hormiga.getMovementHistory()[i + 1] - 1;
-                                double tk = 1/grafo.getMatrizA()[x][y];
+                                double tk = 1/grafo.getMatrixA()[x][y];
 
-                                currentDistance += grafo.getMatrizA()[x][y];
+                                currentDistance += grafo.getMatrixA()[x][y];
 
                                 if (cont_c == 0) {
                                     pheromoneQuantity[x][y] += tk;
                                 } else {
-                                    double t_1 = pheromoneQuantity[x][y] - 1/grafo.getMatrizA()[x][y];
+                                    double t_1 = pheromoneQuantity[x][y] - 1/grafo.getMatrixA()[x][y];
                                     double ρ = Double.parseDouble(evaporation_factor.getText());
                                     pheromoneQuantity[x][y] += evaporationUpdate(ρ, t_1, delta_t);
                                 }
@@ -364,8 +364,8 @@ public class Simulation extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         String matriz = "";
 
-        for (int i = 0; i < grafo.getNumVertices(); i++) {
-            for (int j = 0; j < grafo.getNumVertices(); j++) {
+        for (int i = 0; i < grafo.getNumVertex(); i++) {
+            for (int j = 0; j < grafo.getNumVertex(); j++) {
                 matriz += "[" + pheromoneQuantity[i][j] + "]" + " ";
             }
             matriz += "\n";
