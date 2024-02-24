@@ -1,10 +1,15 @@
 package Interface;
 
+// IMPORTAMOS LAS LIBRERIAS NECESARIAS.
 import EDD.CAnt;
 import EDD.Global;
 import EDD.GrafoMA;
 import javax.swing.JOptionPane;
 
+/**
+ * 
+ * @author nicolasplanas
+ */
 public class Simulation extends javax.swing.JFrame {
     private GrafoMA grafo = Global.getGrafo();
     private int[] p;
@@ -271,22 +276,41 @@ public class Simulation extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Los valores no pueden ser negativos!");
                 } else {
 
-                    // PRINT DEL AREA DE TEXTO!
+                    // VARIABLE STRING PARA EL ÁREA DE TEXTO.
                     String result = "";
-
-                    // DISTANCIA MAS CORTA!
-                    double shortestDistance = 0;
+                    
+                    // RECORRIDO MÁS OPTIMO.
                     String optimalPath = "";
 
-                    int antsAmount;
+                    // DISTANCIA MÁS CORTA DE TODOS LOS RECORRIDOS.
+                    double shortestDistance = 0;
+
+                    // CANTIDAD DE CIUDADES DE LA SIMULACIÓN.
                     double m = grafo.getNumVertices();
 
-                    // FEROMONA INICIAL!
+                    // CANTIDAD DE FEROMONA INICIAL PARA LAS ARISTAS.
                     double ti = 1/m;
-
-                    int cycles = Integer.parseInt(cycles_input.getText());
+                    
+                    // CANTIDAD DE HORMIGAS PARA LA SIMULACIÓN.
+                    int antsAmount = 0;
+                    
+                    // CANTIDAD DE CICLOS DE LA SIMULACIÓN.
+                    int cycles = 0;
+                    
+                    // CONTADOR DE CICLOS.
                     int cont_c = 0;
-
+                    
+                    // VALIDAMOS LOS CICLOS.
+                    try {
+                        cycles = Integer.parseInt(cycles_input.getText());
+                        if (cycles <= 0) {
+                            JOptionPane.showMessageDialog(null, "La cantidad de ciclos tiene que ser mayor a '0'!");
+                        }
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "Ingrese una cantidad de ciclos valido!");
+                    }
+                    
+                    // ITERAMOS LA MATRIZ AUXILIAR Y LE INSERTAMOS EL VALOR INCIAL DE FEROMONA EN TODAS SUS POSICIONES.
                     for (int i = 0; i < grafo.getMaxVertices(); i++) {
                         for (int j = 0; j < grafo.getMaxVertices(); j++) {
                             pheromoneQuantity[i][j] = ti;
@@ -294,12 +318,12 @@ public class Simulation extends javax.swing.JFrame {
                     }
 
                     // VALIDAMOS EL INPUT DE LA CANTIDAD DE HORMIGAS
-                    if ("".equals(ants_amount.getText())) {
-                        antsAmount = 0;
+                    if ("".equals(ants_amount.getText()) || Integer.parseInt(ants_amount.getText()) <= 0) {
+                        JOptionPane.showMessageDialog(null, result);
                     } else {
                         antsAmount = Integer.parseInt(ants_amount.getText());
                     }
-
+                    
                     while (cont_c < cycles) {
                         double delta_t = 0;
                         int cont = 0;
@@ -309,12 +333,13 @@ public class Simulation extends javax.swing.JFrame {
                             CAnt hormiga = new CAnt(grafo, Integer.parseInt(r.getText()), Integer.parseInt(s.getText()));
                             hormiga.setΑ(Double.parseDouble(pheromone_grade.getText()));
                             hormiga.setΒ(Double.parseDouble(visibility_grade.getText()));
-
+                            
+                            // SE DESPLAZA LA HORMIGA EN BASE A LA FÓRMULA DE PROBABILIDAD.
                             while (hormiga.getR() != hormiga.getS() && hormiga.getTrapped() == false) {
                                 hormiga.movementProbability(grafo, pheromoneQuantity);
                             }
 
-                            // ACTUALIZA LA MATRIZ DE FEROMONAS!
+                            // SE ACTUALIZAN LAS FEROMONA DENTRO DE LA MATRIZ AUXILIAR.
                             for (int i = 0; i < hormiga.getMovementHistory().length && hormiga.getMovementHistory()[i + 1] != 0; i++) {
                                 int x = hormiga.getMovementHistory()[i] - 1;
                                 int y = hormiga.getMovementHistory()[i + 1] - 1;
@@ -332,12 +357,12 @@ public class Simulation extends javax.swing.JFrame {
                             }
 
                             delta_t += 1/currentDistance;
-
+                            
+                            // EVALUAMOS LA DISTANCIA MÁS CORTA.
                             if (shortestDistance == 0 || currentDistance < shortestDistance) {
                                 shortestDistance = currentDistance;
                                 optimalPath = printPath(hormiga);
                                 setP(hormiga.getMovementHistory());
-                                System.out.println(this.printP(getP()));
                             }
                             result += "HORMIGA " + (cont + 1) + ":\n" + "DISTANCIA RECORRIDA: " + currentDistance + "\n" + printPath(hormiga) + "\n";
                             cont ++;
@@ -372,7 +397,13 @@ public class Simulation extends javax.swing.JFrame {
         }
         jamoncito.setText(matriz);
     }//GEN-LAST:event_jButton3ActionPerformed
-
+    
+    /**
+     * Este método retorna el recorrido impreso de la 
+     * hormiga en un formato tipo lista.
+     * @param hormiga
+     * @return 
+     */
     private String printPath(CAnt hormiga) {
         String path = "Recorrido: ";
         
