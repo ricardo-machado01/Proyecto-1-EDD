@@ -134,12 +134,12 @@ public class Homescreen extends javax.swing.JFrame {
     private void import_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_import_txtActionPerformed
         FileChooser archivo = new FileChooser();
         try {
-            archivo.leerArchivo();
-            int numVertices = archivo.getNumVertices();
-            String[] aristas = archivo.getAristas();
-            grafo.setNumVertices(numVertices);
+            archivo.readFile();
+            int numVertices = archivo.getNumVertex();
+            String[] aristas = archivo.getEdges();
+            grafo.setNumVertex(numVertices);
 
-            for (int i = 0; i < archivo.getNumAristas(); i++) {
+            for (int i = 0; i < archivo.getNumEdges(); i++) {
                 String[] arista = aristas[i].split(",");
                 grafo.insertEdge(Integer.parseInt(arista[0])-1, Integer.parseInt(arista[1])-1, Double.parseDouble(arista[2]));
             }
@@ -174,8 +174,8 @@ public class Homescreen extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No haz importado ningún archivo!");
         } else {
         GraphStream grafico = new GraphStream();
-        int numVertices = grafo.getNumVertices();
-        grafico.PintarGrafo(numVertices, grafo.getMatrizA(), array);
+        int numVertices = grafo.getNumVertex();
+        grafico.PintarGrafo(numVertices, grafo.getMatrixA(), array);
         }
     }//GEN-LAST:event_show_graphActionPerformed
 

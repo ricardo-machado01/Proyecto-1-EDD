@@ -151,7 +151,7 @@ public class AddOrDeleteCity extends javax.swing.JFrame {
             String[] aristasArray = aristas.split("\n");
             for (int i = 0; i < aristasArray.length; i++) {
                 String[] arista = aristasArray[i].split(",");
-                grafo.insertEdge(grafo.getNumVertices()-1,Integer.parseInt(arista[0]) - 1, Double.parseDouble(arista[1]));
+                grafo.insertEdge(grafo.getNumVertex()-1,Integer.parseInt(arista[0]) - 1, Double.parseDouble(arista[1]));
             }
             txtAristas.setText("");
         }else{
