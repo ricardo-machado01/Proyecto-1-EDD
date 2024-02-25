@@ -65,8 +65,6 @@ public class GraphStream {
                 
                 Node node_s = g.getNode(Integer.toString(ciudad_s));
                 
-                System.out.println(node_r + ", " + node_s);
-                
                 if (node_s != null) {
                     Edge edge_k = node_r.getEdgeBetween(node_s);
                     edge_k.setAttribute("ui.style", "fill-color: skyblue;");

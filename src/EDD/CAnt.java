@@ -4,8 +4,8 @@ package EDD;
 import java.util.Random;
 
 /**
- * ESTA CLASE REPRESENTA A LA HORMIGA DENTRO DE LA SIMULACIÓN.
- * @author nicolasplanas
+ * Esta clase representa a la hormiga dentro de la simulación.
+ * @author Nicolás Planas
  */
 public class CAnt {
     
@@ -34,10 +34,10 @@ public class CAnt {
     int[] movementHistory;
     
     /**
-     * ESTE ES EL CONSTRUCTOR DE LA CLASE Y RECIBE TRES PARÁMETROS.
-     * @param matrix
-     * @param r
-     * @param sf
+     * Este es el constructor de la clase.
+     * @param matrix matriz del documento importado como txt.
+     * @param r ciudad de partida de la hormiga o 'nido'.
+     * @param sf ciudad destino de la hormiga o 'comida'.
      */
     public CAnt (GrafoMA matrix, int r, int sf) {
         α = 1;
@@ -51,23 +51,22 @@ public class CAnt {
     }
 
     /**
-     * ESTE MÉTODO RECIBE DOS PARÁMETROS Y RETORNA UN
-     * DOUBLE CALCULADO EN BASE A LA FÓRMULA 'τ*η'.
-     * @param drs
-     * @param t
-     * @return 
+     * Este método calcula el producto de los factores 'τ' y 'η'
+     * necesario para la fórmula de probabilidad.
+     * @param drs distancia entre la ciudades 'r' y 's'.
+     * @param t cantidad de feromona enntre las ciudades.
+     * @return 'double' el cual representa el resultado de la operación.
      */
     private double m(double drs, double t){
         return Math.pow(t, α) * Math.pow((Q/drs), β);
     }
     
     /**
-     * ESTE MÉTODO RECIBE DOS PARÁMETROS Y RETORNA UN DOUBLE
-     * QUE REPRESENTA LA CIUDAD A LA QUE LA HORMIGA SE DESPLAZÓ
-     * EN BASE A LA FÓRMULA DE PROBABILIDAD.
-     * @param matrix
-     * @param pheromoneQuantity
-     * @return 
+     * Este método sirve para desplazar a la hormiga
+     * en base a la fórmula de probabilidad.
+     * @param matrix matriz del archivo txt importado.
+     * @param pheromoneQuantity matriz de las feromonas en cada arista.
+     * @return 'int' el cual representa la posición actual de la hormiga.
      */
     public int movementProbability(GrafoMA matrix, double[][] pheromoneQuantity) {
         
@@ -165,92 +164,42 @@ public class CAnt {
         }
     }
     
-    /**
-     * ESTE MÉTODO RECIBE UN 'int' COMO PARÁMETRO Y
-     * SE LO ASIGNA COMO NUEVO VALOR A LA VARIABLE "r".
-     * @param r 
-     */
     public void setR(int r) {
         this.r = r;
     }
-
-    /**
-     * ESTE MÉTODO RECIBE UN 'int' COMO PARÁMETRO Y
-     * SE LO ASIGNA COMO NUEVO VALOR A LA VARIABLE "sf".
-     * @param sf 
-     */
+    
     public void setSf(int sf) {
         this.sf = sf;
     }
 
-    /**
-     * ESTE MÉTODO RECIBE UN 'double' COMO PARÁMETRO Y
-     * SE LO ASIGNA COMO NUEVO VALOR A LA VARIABLE "α".
-     * @param α
-     */
     public void setΑ(double α) {
         this.α = α;
     }
 
-    /**
-     * ESTE MÉTODO RECIBE UN 'double' COMO PARÁMETRO Y
-     * SE LO ASIGNA COMO NUEVO VALOR A LA VARIABLE "β".
-     * @param β 
-     */
     public void setΒ(double β) {
         this.β = β;
     }
 
-    /**
-     * ESTE MÉTODO RETORNA UN VALOR 'int[]' EL CUAL REPRESENTA
-     * EL HISTORIAL DE MOVIMIENTO DE LA HORMIGA.
-     * @return
-     */
     public int[] getMovementHistory() {
         return movementHistory;
     }
     
-    /**
-     * ESTE MÉTODO RETORNA UN VALOR 'int' EL CUAL REPRESENTA
-     * LA POSICIÓN ACTUAL DE LA HORMIGA.
-     * @return
-     */
     public int getR() {
         return r;
     }
 
-    /**
-     * ESTE MÉTODO RETORNA UN VALOR 'int' EL CUAL REPRESENTA
-     * LA CIUDAD DESTINO DE LA HORMIGA.
-     * @return
-     */
     public int getSf() {
         return sf;
     }
 
-    /**
-     * ESTE MÉTODO RETORNA UN VALOR 'double' EL CUAL REPRESENTA
-     * EL GRADO DE IMPORTANCIA DE LA FEROMONA.
-     * @return
-     */
     public double getΑ() {
         return α;
     }
 
-    /**
-     * ESTE MÉTODO RETORNA UN VALOR 'double' EL CUAL REPRESENTA
-     * EL GRADO DE VISIBILIDAD DE LA CIUDAD.
-     * @return
-     */
     public double getΒ() {
         return β;
     }
 
-    /**
-     * ESTE MÉTODO RETORNA UN VALOR 'boolean' EL CUAL REPRESENTA
-     * SI LA HORMIGA SE QUEDÓ ENCERRADA EN UNA CIUDAD.
-     * @return
-     */
     public boolean getTrapped() {
         return trapped;
     }

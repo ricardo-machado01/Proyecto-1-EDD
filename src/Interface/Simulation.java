@@ -7,8 +7,8 @@ import EDD.GrafoMA;
 import javax.swing.JOptionPane;
 
 /**
- * ESTA CLASE REPRESENTA LA VENTANA EN DONDE SE EJECUTA LA SIMULACIÓN.
- * @author nicolasplanas
+ * Esta clase representa la ventana en donde se ejecuta la simulación.
+ * @author Nicolás Planas
  */
 public class Simulation extends javax.swing.JFrame {
     private GrafoMA grafo = Global.getGrafo();
@@ -16,7 +16,7 @@ public class Simulation extends javax.swing.JFrame {
     private double[][] pheromoneQuantity;
 
     /**
-     *  ESTE ES EL CONSTRUCTOR DE LA CLASE Y NO RECIBE PARÁMETROS.
+     *  Este es el constructor de la clase y no recibe parámetros.
      */
     public Simulation() {
         initComponents();
@@ -51,7 +51,7 @@ public class Simulation extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jLabel9 = new javax.swing.JLabel();
         cycles_input = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        execute_simulation = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         simulation_result = new javax.swing.JTextArea();
@@ -60,23 +60,24 @@ public class Simulation extends javax.swing.JFrame {
         evaporation_factor = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(900, 475));
+        setMinimumSize(new java.awt.Dimension(825, 435));
+        setPreferredSize(new java.awt.Dimension(825, 415));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Woodchuck", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Woodchuck", 0, 28)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("RESULTADOS");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 10, 340, 40));
+        jLabel1.setText("RESULTADO");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 20, 340, 60));
 
         jSeparator1.setAutoscrolls(true);
         jSeparator1.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 370, 20));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 340, 30));
 
         jLabel3.setFont(new java.awt.Font("Aspekta", 2, 15)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("Importancia de la feromona  \"α\":");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 240, 40));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 240, 40));
 
         pheromone_grade.setFont(new java.awt.Font("Aspekta", 0, 12)); // NOI18N
         pheromone_grade.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -86,12 +87,12 @@ public class Simulation extends javax.swing.JFrame {
                 pheromone_gradeActionPerformed(evt);
             }
         });
-        getContentPane().add(pheromone_grade, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 110, 40, 20));
+        getContentPane().add(pheromone_grade, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 120, 40, 20));
 
         jLabel5.setFont(new java.awt.Font("Aspekta", 2, 15)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 51, 51));
         jLabel5.setText("Grado de visibilidad  \"β\":");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 210, 40));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 210, 40));
 
         visibility_grade.setFont(new java.awt.Font("Aspekta", 0, 12)); // NOI18N
         visibility_grade.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -101,12 +102,12 @@ public class Simulation extends javax.swing.JFrame {
                 visibility_gradeActionPerformed(evt);
             }
         });
-        getContentPane().add(visibility_grade, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 40, 20));
+        getContentPane().add(visibility_grade, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 160, 40, 20));
 
         jLabel6.setFont(new java.awt.Font("Aspekta", 2, 15)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(51, 51, 51));
         jLabel6.setText("Ciudad de partida \"nido\":");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 210, 40));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 210, 40));
 
         r.setFont(new java.awt.Font("Aspekta", 0, 12)); // NOI18N
         r.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -116,13 +117,14 @@ public class Simulation extends javax.swing.JFrame {
                 rActionPerformed(evt);
             }
         });
-        getContentPane().add(r, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 40, 20));
+        getContentPane().add(r, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, 40, 20));
 
-        jLabel7.setFont(new java.awt.Font("Aspekta", 2, 18)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Aspekta", 2, 15)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(51, 51, 51));
         jLabel7.setText("Ciudad de  llegada \"comida\":");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 250, 30));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 250, 40));
 
+        s.setFont(new java.awt.Font("Aspekta", 1, 12)); // NOI18N
         s.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         s.setText("0");
         s.addActionListener(new java.awt.event.ActionListener() {
@@ -130,12 +132,12 @@ public class Simulation extends javax.swing.JFrame {
                 sActionPerformed(evt);
             }
         });
-        getContentPane().add(s, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 293, 30, 20));
+        getContentPane().add(s, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 250, 40, 20));
 
         jLabel8.setFont(new java.awt.Font("Aspekta", 2, 15)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(51, 51, 51));
         jLabel8.setText("Cantidad de hormigas:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 170, 40));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 170, 40));
 
         ants_amount.setFont(new java.awt.Font("Aspekta", 0, 12)); // NOI18N
         ants_amount.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -145,10 +147,10 @@ public class Simulation extends javax.swing.JFrame {
                 ants_amountActionPerformed(evt);
             }
         });
-        getContentPane().add(ants_amount, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, 40, 20));
+        getContentPane().add(ants_amount, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 100, 40, 20));
 
-        ACA.setFont(new java.awt.Font("Aspekta", 0, 18)); // NOI18N
-        ACA.setForeground(new java.awt.Color(102, 102, 102));
+        ACA.setFont(new java.awt.Font("Aspekta", 1, 14)); // NOI18N
+        ACA.setForeground(new java.awt.Color(51, 51, 51));
         ACA.setText("VOLVER");
         ACA.setDefaultCapable(false);
         ACA.addActionListener(new java.awt.event.ActionListener() {
@@ -156,17 +158,18 @@ public class Simulation extends javax.swing.JFrame {
                 ACAActionPerformed(evt);
             }
         });
-        getContentPane().add(ACA, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 390, 110, 40));
+        getContentPane().add(ACA, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, 90, 40));
 
         jSeparator2.setAutoscrolls(true);
         jSeparator2.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
-        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, 60, 400, 20));
+        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 340, 30));
 
-        jLabel9.setFont(new java.awt.Font("Aspekta", 2, 18)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Aspekta", 2, 15)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(51, 51, 51));
         jLabel9.setText("Número de ciclos:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 150, 30));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 150, 40));
 
+        cycles_input.setFont(new java.awt.Font("Aspekta", 1, 12)); // NOI18N
         cycles_input.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         cycles_input.setText("0");
         cycles_input.addActionListener(new java.awt.event.ActionListener() {
@@ -174,44 +177,45 @@ public class Simulation extends javax.swing.JFrame {
                 cycles_inputActionPerformed(evt);
             }
         });
-        getContentPane().add(cycles_input, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 333, 30, 20));
+        getContentPane().add(cycles_input, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, 40, 20));
 
-        jButton2.setFont(new java.awt.Font("Aspekta", 0, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(102, 102, 102));
-        jButton2.setText("SIMULAR");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        execute_simulation.setFont(new java.awt.Font("Aspekta", 1, 14)); // NOI18N
+        execute_simulation.setForeground(new java.awt.Color(51, 51, 51));
+        execute_simulation.setText("SIMULAR");
+        execute_simulation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                execute_simulationActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 390, -1, 40));
+        getContentPane().add(execute_simulation, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 340, 100, 40));
 
-        jButton1.setFont(new java.awt.Font("Aspekta", 0, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(102, 102, 102));
+        jButton1.setFont(new java.awt.Font("Woodchuck", 0, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(51, 51, 51));
         jButton1.setText("X");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 10, 30, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 10, 30, 30));
 
         simulation_result.setColumns(20);
+        simulation_result.setFont(new java.awt.Font("Aspekta", 1, 12)); // NOI18N
         simulation_result.setRows(5);
         jScrollPane1.setViewportView(simulation_result);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 60, 400, 320));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 80, 380, 240));
 
-        jLabel4.setFont(new java.awt.Font("Woodchuck", 0, 24)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Woodchuck", 0, 28)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("CREADOR DE HORMIGAS");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 360, 40));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 390, 60));
 
         jLabel10.setFont(new java.awt.Font("Aspekta", 2, 15)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(51, 51, 51));
         jLabel10.setText("Factor de evaporación \"ρ\":");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 230, 40));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 230, 40));
 
         evaporation_factor.setFont(new java.awt.Font("Aspekta", 0, 12)); // NOI18N
         evaporation_factor.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -221,7 +225,7 @@ public class Simulation extends javax.swing.JFrame {
                 evaporation_factorActionPerformed(evt);
             }
         });
-        getContentPane().add(evaporation_factor, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 40, 20));
+        getContentPane().add(evaporation_factor, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, 40, 20));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -257,7 +261,7 @@ public class Simulation extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cycles_inputActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void execute_simulationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_execute_simulationActionPerformed
         if ("".equals(r.getText()) || "".equals(s.getText())) {
             JOptionPane.showMessageDialog(null, "¡Tienes que llenar ambos parámetros de las ciudades!");
         } else {
@@ -318,7 +322,7 @@ public class Simulation extends javax.swing.JFrame {
                                 double delta_t = 0;
 
                                 int cont = 0;
-                                result += "\nCICLO #" + (cont_c + 1) + ":\n\n";
+                                result += "CICLO #" + (cont_c + 1) + ":\n\n";
 
                                 while (cont < antsAmount) {
                                     double currentDistance = 0;
@@ -356,7 +360,7 @@ public class Simulation extends javax.swing.JFrame {
                                         optimalPath = printPath(hormiga);
                                         shortestRoute = hormiga.getMovementHistory();
                                     }
-                                    result += "HORMIGA " + (cont + 1) + ":\n" + "DISTANCIA RECORRIDA: " + currentDistance + "\n" + printPath(hormiga) + "\n";
+                                    result += "HORMIGA #" + (cont + 1) + ":\n" + "DISTANCIA RECORRIDA: " + currentDistance + "\n" + "Recorrido: " + printPath(hormiga) + "\n\n";
                                     cont ++;
                                 }
                                 cont_c ++;
@@ -373,7 +377,7 @@ public class Simulation extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "¡Ingrese un valor válido para la ciudad!");
             }
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_execute_simulationActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
@@ -384,26 +388,25 @@ public class Simulation extends javax.swing.JFrame {
     }//GEN-LAST:event_evaporation_factorActionPerformed
     
     /**
-     * ESTE MÉTODO RECIBE UN PARÁMETRO Y RETORNA UN 'String'
-     * DEL RECORRIDO DE LA HORMIGA EN UN FORMATO TIPO LISTA.
-     * @param hormiga
-     * @return 
+     * Este método imprime el recorrido de la hormiga.
+     * @param ant Hormiga cuyo recorrido se desea imprimir.
+     * @return 'String' del recorrido de la hormiga en un formato tipo lista.
      */
-    private String printPath(CAnt hormiga) {
-        String path = "Recorrido: ";
+    private String printPath(CAnt ant) {
+        String path = "";
         
-        for (int i = 0; i < hormiga.getMovementHistory().length && hormiga.getMovementHistory()[i] != 0; i++) {
+        for (int i = 0; i < ant.getMovementHistory().length && ant.getMovementHistory()[i] != 0; i++) {
             if (i == 0) {
                 path += "[";
             }
-            if (hormiga.getMovementHistory()[i] != 0) {
-                path += Integer.toString(hormiga.getMovementHistory()[i]);
+            if (ant.getMovementHistory()[i] != 0) {
+                path += Integer.toString(ant.getMovementHistory()[i]);
             }
-            if (i < hormiga.getMovementHistory().length - 1 && hormiga.getMovementHistory()[i + 1] != 0) {
+            if (i < ant.getMovementHistory().length - 1 && ant.getMovementHistory()[i + 1] != 0) {
                 path += ",";
             }
             else {
-                path += "]\n";
+                path += "]";
                 break;
             }
         }
@@ -411,19 +414,18 @@ public class Simulation extends javax.swing.JFrame {
     }
     
     /**
-     * ESTE MÉTODO RECIBE TRES PARÁMETROS, RETORNA UN 'double' Y ES LA FÓRMULA PARA
-     * CALCULAR LA FEROMONA EN BASE A LA EVAPORACIÓN TRAS LA FINALIZACIÓN DE UN CICLO.
-     * @param p
-     * @param t
-     * @param d_t
-     * @return 
+     * Este método retorna el valor actualizado de la feromona al culminar un ciclo.
+     * @param p factor de evaporación que se utilizara para la simulación.
+     * @param t cantidad de feromona que había por ese camino en el ciclo anterior.
+     * @param d_t sumatoria de la feromona proporcionada por todas las hormigas que han recorrido ese camino.
+     * @return 'double' el cual representa el valor de la feromona tras la evaporación.
      */
     private double evaporationUpdate(double p, double t, double d_t) {
         return (1 - p) * t + d_t;
     }
 
     /**
-     * ESTE MÉTODO INICIALIZA LA VENTANA Y RECIBE UN PARÁMETRO.
+     * Este método inicializa la ventana.
      * @param args 
      */
     public static void main(String args[]) {
@@ -463,8 +465,8 @@ public class Simulation extends javax.swing.JFrame {
     private javax.swing.JTextField ants_amount;
     private javax.swing.JTextField cycles_input;
     private javax.swing.JTextField evaporation_factor;
+    private javax.swing.JButton execute_simulation;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;

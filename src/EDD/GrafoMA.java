@@ -117,13 +117,13 @@ public class GrafoMA {
      */
     public String printMatrix(){
         String strMatrix = "";
+        
         for (int i = 0; i < numVertex; i++) {
+            strMatrix += " " + (i + 1) + " - ";
             for (int j = 0; j < numVertex; j++) {
                 strMatrix += "[" + matrixA[i][j] + "]" + " ";
-                /*System.out.print(matrizA[i][j] + " ");*/
             }
             strMatrix += "\n";
-            /*System.out.println();*/
         }
     return strMatrix;
     }
