@@ -5,6 +5,7 @@ import EDD.CAnt;
 import EDD.Global;
 import EDD.GrafoMA;
 import javax.swing.JOptionPane;
+import java.text.DecimalFormat;
 
 /**
  * Esta clase representa la ventana en donde se ejecuta la simulación.
@@ -56,8 +57,13 @@ public class Simulation extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         simulation_result = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         evaporation_factor = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(825, 435));
@@ -70,6 +76,8 @@ public class Simulation extends javax.swing.JFrame {
         jLabel1.setText("RESULTADO");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 20, 340, 60));
 
+        jSeparator1.setBackground(new java.awt.Color(51, 51, 51));
+        jSeparator1.setForeground(new java.awt.Color(51, 51, 51));
         jSeparator1.setAutoscrolls(true);
         jSeparator1.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 340, 30));
@@ -160,6 +168,8 @@ public class Simulation extends javax.swing.JFrame {
         });
         getContentPane().add(ACA, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, 90, 40));
 
+        jSeparator2.setBackground(new java.awt.Color(51, 51, 51));
+        jSeparator2.setForeground(new java.awt.Color(51, 51, 51));
         jSeparator2.setAutoscrolls(true);
         jSeparator2.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
         getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 340, 30));
@@ -212,6 +222,10 @@ public class Simulation extends javax.swing.JFrame {
         jLabel4.setText("CREADOR DE HORMIGAS");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 390, 60));
 
+        jLabel13.setIcon(new javax.swing.ImageIcon("/Users/nicolasplanas/Desktop/Images/ant_trail_2.png")); // NOI18N
+        jLabel13.setPreferredSize(new java.awt.Dimension(100, 200));
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, -10, 100, 160));
+
         jLabel10.setFont(new java.awt.Font("Aspekta", 2, 15)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(51, 51, 51));
         jLabel10.setText("Factor de evaporación \"ρ\":");
@@ -226,6 +240,17 @@ public class Simulation extends javax.swing.JFrame {
             }
         });
         getContentPane().add(evaporation_factor, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, 40, 20));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -20, -1, -1));
+
+        jLabel15.setIcon(new javax.swing.ImageIcon("/Users/nicolasplanas/Desktop/Images/ant_trail_2.png")); // NOI18N
+        jLabel15.setPreferredSize(new java.awt.Dimension(100, 200));
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 270, 100, 160));
+
+        jLabel12.setIcon(new javax.swing.ImageIcon("/Users/nicolasplanas/Desktop/Images/background.png")); // NOI18N
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, -80, -1, -1));
+
+        jLabel11.setIcon(new javax.swing.ImageIcon("/Users/nicolasplanas/Desktop/Images/background.png")); // NOI18N
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, -100, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -296,6 +321,9 @@ public class Simulation extends javax.swing.JFrame {
                     // CANTIDAD DE CICLOS DE LA SIMULACIÓN.
                     int cycles;
                     
+                    // OBJETO NOS PERMITE REDONDEAR LOS DECIMALES.
+                    DecimalFormat dFormatter = new DecimalFormat("0.0");
+                    
                     try {
                         // VALIDAMOS EL INPUT DE LA CANTIDAD DE CICLOS.
                         if (Integer.parseInt(cycles_input.getText()) <= 0) {
@@ -343,8 +371,10 @@ public class Simulation extends javax.swing.JFrame {
 
                                         currentDistance += grafo.getMatrixA()[x][y];
 
+                                        // ACTUALIZACIÓN POR INCREMENTO.
                                         if (cont_c == 0) {
                                             pheromoneQuantity[x][y] += tk;
+                                        // ACTUALIZACIÓN POR EVAPORACIÓN.
                                         } else {
                                             double t_1 = pheromoneQuantity[x][y] - 1/grafo.getMatrixA()[x][y];
                                             double ρ = Double.parseDouble(evaporation_factor.getText());
@@ -360,12 +390,13 @@ public class Simulation extends javax.swing.JFrame {
                                         optimalPath = printPath(hormiga);
                                         shortestRoute = hormiga.getMovementHistory();
                                     }
-                                    result += "HORMIGA #" + (cont + 1) + ":\n" + "DISTANCIA RECORRIDA: " + currentDistance + "\n" + "Recorrido: " + printPath(hormiga) + "\n\n";
+                                    
+                                    result += "HORMIGA #" + (cont + 1) + ":\n" + "DISTANCIA RECORRIDA: " + dFormatter.format(currentDistance) + "\n" + "Recorrido: " + printPath(hormiga) + "\n\n";
                                     cont ++;
                                 }
                                 cont_c ++;
                             }
-                            result += "RECORRIDO MÁS OPTIMO DE LA SIMULACIÓN: " + optimalPath + "\nDISTANCIA: " + shortestDistance;
+                            result += "====================\n\nRECORRIDO MÁS OPTIMO DE LA SIMULACIÓN: " + optimalPath + "\nDISTANCIA: " + dFormatter.format(shortestDistance);
                             simulation_result.setText(result);
                             }
                         }
@@ -469,6 +500,11 @@ public class Simulation extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

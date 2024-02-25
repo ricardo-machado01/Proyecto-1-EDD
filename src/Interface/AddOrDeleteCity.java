@@ -33,6 +33,7 @@ public class AddOrDeleteCity extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
         delete_vertex = new javax.swing.JButton();
         delete_vertex_input = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -51,6 +52,10 @@ public class AddOrDeleteCity extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JSeparator();
         close_window = new javax.swing.JButton();
         jSeparator4 = new javax.swing.JSeparator();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+
+        jLabel1.setIcon(new javax.swing.ImageIcon("/Users/nicolasplanas/Desktop/j.png")); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
@@ -128,7 +133,7 @@ public class AddOrDeleteCity extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Aspekta", 2, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(204, 0, 0));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("EN CASO DE EXISTIR MÁS DE UNA CONEXIÓN");
+        jLabel9.setText("¡EN CASO DE EXISTIR MÁS DE UNA CONEXIÓN");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 300, 20));
 
         title1.setFont(new java.awt.Font("Woodchuck", 0, 28)); // NOI18N
@@ -153,7 +158,13 @@ public class AddOrDeleteCity extends javax.swing.JFrame {
             }
         });
         getContentPane().add(go_to_homepage, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 310, 100, 40));
-        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 320, 70));
+
+        jSeparator2.setBackground(new java.awt.Color(51, 51, 51));
+        jSeparator2.setForeground(new java.awt.Color(51, 51, 51));
+        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 320, 10));
+
+        jSeparator3.setBackground(new java.awt.Color(51, 51, 51));
+        jSeparator3.setForeground(new java.awt.Color(51, 51, 51));
         getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, 310, 20));
 
         close_window.setFont(new java.awt.Font("Woodchuck", 0, 18)); // NOI18N
@@ -164,7 +175,16 @@ public class AddOrDeleteCity extends javax.swing.JFrame {
             }
         });
         getContentPane().add(close_window, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 10, 30, 30));
+
+        jSeparator4.setBackground(new java.awt.Color(51, 51, 51));
+        jSeparator4.setForeground(new java.awt.Color(51, 51, 51));
         getContentPane().add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 310, 20));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon("/Users/nicolasplanas/Desktop/Images/ant.png")); // NOI18N
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 230, -1, 80));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon("/Users/nicolasplanas/Desktop/Images/background.png")); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, -30, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -254,10 +274,13 @@ public class AddOrDeleteCity extends javax.swing.JFrame {
     private javax.swing.JButton delete_vertex;
     private javax.swing.JTextField delete_vertex_input;
     private javax.swing.JButton go_to_homepage;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane2;

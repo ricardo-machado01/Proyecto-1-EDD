@@ -42,6 +42,7 @@ public class Homescreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel9 = new javax.swing.JLabel();
         title2 = new javax.swing.JLabel();
         title1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -54,6 +55,14 @@ public class Homescreen extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         save_txt = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+
+        jLabel9.setIcon(new javax.swing.ImageIcon("/Users/nicolasplanas/Desktop/Images/ant_trail.png")); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(725, 460));
@@ -151,6 +160,25 @@ public class Homescreen extends javax.swing.JFrame {
             }
         });
         getContentPane().add(save_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 170, 120, 40));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon("/Users/nicolasplanas/Desktop/Images/ant_trail.png")); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, -30, 200, 160));
+        jLabel3.getAccessibleContext().setAccessibleName("");
+
+        jLabel6.setIcon(new javax.swing.ImageIcon("/Users/nicolasplanas/Desktop/Images/ant_trail.png")); // NOI18N
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 310, 200, 160));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon("/Users/nicolasplanas/Desktop/Images/ant_trail.png")); // NOI18N
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 310, 200, 160));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon("/Users/nicolasplanas/Desktop/Images/ant_trail.png")); // NOI18N
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, -30, 200, 160));
+
+        jLabel10.setIcon(new javax.swing.ImageIcon("/Users/nicolasplanas/Desktop/Images/ant_trail.png")); // NOI18N
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, -30, 200, 160));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon("/Users/nicolasplanas/Desktop/Images/background.png")); // NOI18N
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, -50, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -270,8 +298,15 @@ public class Homescreen extends javax.swing.JFrame {
     private javax.swing.JButton close_window;
     private javax.swing.JButton go_to_simulation;
     private javax.swing.JButton import_txt;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton manage_txt;
     private javax.swing.JButton save_txt;
