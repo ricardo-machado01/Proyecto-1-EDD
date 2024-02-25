@@ -1,65 +1,67 @@
 package EDD;
 
+import javax.swing.JOptionPane;
+
 /**
  * Clase Grafo con Matriz de Adyacencia
  * @author Ricardo Machado
  */
 public class GrafoMA {
 
-    private int maxVertices;
-    private int numVertices;
-    private double[][] matrizA;
+    private int maxVertex;
+    private int numVertex;
+    private double[][] matrixA;
 
     /**
      * Constructor de la clase Grafo
-     * @param maxVertices maxVertices indica el máximo de dimensiones de la matriz de Adyacencia del grafo. 
+     * @param maxVertex maxVertex indica el máximo de dimensiones de la matriz de Adyacencia del grafo. 
      */
-    public GrafoMA(int maxVertices) {
-        this.maxVertices = maxVertices;
-        this.numVertices = 0;
-        this.matrizA = new double[maxVertices][maxVertices];
+    public GrafoMA(int maxVertex) {
+        this.maxVertex = maxVertex;
+        this.numVertex = 0;
+        this.matrixA = new double[maxVertex][maxVertex];
     }
 
-    public int getMaxVertices() {
-        return maxVertices;
+    public int getMaxVertex() {
+        return maxVertex;
     }
 
-    public void setMaxVertices(int maxVertices) {
-        this.maxVertices = maxVertices;
+    public void setMaxVertex(int maxVertex) {
+        this.maxVertex = maxVertex;
     }
 
-    public int getNumVertices() {
-        return numVertices;
+    public int getNumVertex() {
+        return numVertex;
     }
 
-    public void setNumVertices(int numVertices) {
-        this.numVertices = numVertices;
+    public void setNumVertex(int numVertex) {
+        this.numVertex = numVertex;
     }
 
-    public double[][] getMatrizA() {
-        return matrizA;
+    public double[][] getMatrixA() {
+        return matrixA;
     }
 
-    public void setMatrizA(double[][] matrizA) {
-        this.matrizA = matrizA;
+    public void setMatrixA(double[][] matrixA) {
+        this.matrixA = matrixA;
     }
     
     /**
      * Método para saber si el grafo está vacío.
      * @return Retorna un tipo de dato booleano.
      */
-    public boolean GrafoVacio(){
-        return numVertices == 0;
+    public boolean GraphEmpty(){
+        return numVertex == 0;
     }
     
     /**
      * Método para insertar arista en un vertice de la Matriz de Adyacencia del grafo. Recordar que es no dirigido.
      * @param v1 vertice origen.
      * @param v2 vertice destino.
-     * @param ponteracion peso de arista entre los vertices v1 y v2. 
+     * @param ponteration peso de arista entre los vertices v1 y v2. 
      */
-    public void insertarArista(int v1, int v2, double ponteracion){
-        matrizA[v1][v2] = matrizA[v2][v1] = ponteracion;
+    public void insertEdge(int v1, int v2, double ponteration){
+        matrixA[v1][v2] = matrixA[v2][v1] = ponteration;
     }
     
     /**
@@ -67,45 +69,45 @@ public class GrafoMA {
      * @param v1 vertice origen.
      * @param v2 vertice destino.
      */
-    public void eliminarArista(int v1, int v2){
-        matrizA[v1][v2] = matrizA[v2][v1] = 0;
+    public void deleteEdge(int v1, int v2){
+        matrixA[v1][v2] = matrixA[v2][v1] = 0;
     }
     
     /**
      * Método para añadir uno o más vertices a la matriz de adyacencia del Grafo.
      * @param n cantidad de vertices que se desea añadir.
      */
-    public void insertarVertice(int n){
-        if(n > maxVertices-numVertices){
+    public void insertVertex(int n){
+        if(n > maxVertex-numVertex){
             System.out.println("El número de vertices se ha superado");
         }else{
-            for (int i=0; i < numVertices + n; i++) {
-                for (int j = numVertices; j < numVertices + n; j++) 
-                    matrizA [i][j] = matrizA [j][i] = 0;
+            for (int i=0; i < numVertex + n; i++) {
+                for (int j = numVertex; j < numVertex + n; j++) 
+                    matrixA [i][j] = matrixA [j][i] = 0;
             }
-        numVertices += n;
+        numVertex += n;
         }
     }
     
     /**
      * Método para eliminar un vertice del Grafo a través de la eliminación de las aristas y reducción de la matriz de adyacencia.
-     * @param vertice número entero que indica la ciudad o vertice que sea eliminar.
+     * @param vertex número entero que indica la ciudad o vertice que sea eliminar.
      */
-    public void eliminarVertice(int vertice){
-        if(vertice >= numVertices){
-            System.out.println("Error vertice inválido");
+    public void deleteVertex(int vertex){
+        if(vertex >= numVertex){
+            JOptionPane.showInternalMessageDialog(null, "Error vertice inválido");
         }else{
-            for (int i = vertice; i < numVertices; i++) {
-                for (int j = 0; j < numVertices; j++) {
-                    if(i == numVertices - 1 || j == numVertices - 1 ){
-                        matrizA[i][j] = matrizA[j][i] = 0;
+            for (int i = vertex; i < numVertex; i++) {
+                for (int j = 0; j < numVertex; j++) {
+                    if(i == numVertex - 1 || j == numVertex - 1 ){
+                        matrixA[i][j] = matrixA[j][i] = 0;
                     }else{
-                        matrizA[i][j] = matrizA[i+1][j];
-                        matrizA[j][i] = matrizA[i][j];
+                        matrixA[i][j] = matrixA[i+1][j];
+                        matrixA[j][i] = matrixA[i][j];
                     }
                 }
             }
-            numVertices--;
+            numVertex--;
         }
     }
     
@@ -113,17 +115,16 @@ public class GrafoMA {
      * Método para imprimir la matriz de Adyacencia del Grafo.
      * @return Retorna un String con la información de la matriz de las filas y columnas.
      */
-    public String imprimirMatriz(){
-        String strMatriz = "";
-        System.out.println ("La matriz contiene " + numVertices + " vértices: \n");
-        for (int i = 0; i < numVertices; i++) {
-            for (int j = 0; j < numVertices; j++) {
-                strMatriz += "[" + matrizA[i][j] + "]" + " ";
-                /*System.out.print(matrizA[i][j] + " ");*/
+    public String printMatrix(){
+        String strMatrix = "";
+        
+        for (int i = 0; i < numVertex; i++) {
+            strMatrix += " " + (i + 1) + " - ";
+            for (int j = 0; j < numVertex; j++) {
+                strMatrix += "[" + matrixA[i][j] + "]" + " ";
             }
-            strMatriz += "\n";
-            /*System.out.println();*/
+            strMatrix += "\n";
         }
-    return strMatriz;
+    return strMatrix;
     }
 }

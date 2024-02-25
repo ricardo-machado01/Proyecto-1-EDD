@@ -3,6 +3,7 @@ package functions;
 //Importando librerias de GraphStream
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
+import org.graphstream.graph.Edge;
 import org.graphstream.graph.implementations.SingleGraph;
 import org.graphstream.ui.view.Viewer;
 
@@ -15,11 +16,11 @@ public class GraphStream {
     
     /**
      * Método para crear la gráfica y pintar el grafo.
-     * @param numVertices Sirve para crear la cantidad de nodos.
-     * @param matriz    Sirve para obtener las aristas y crear las conexiones.
-     * @param ciudadesRecorridas Sirve para cambiar el color a los vertices por donde pasa la hormiga.
+     * @param numVertex Sirve para crear la cantidad de nodos.
+     * @param matrix    Sirve para obtener las aristas y crear las conexiones.
+     * @param citiesVisited Sirve para cambiar el color a los vertices por donde pasa la hormiga.
      */
-    public void PintarGrafo(int numVertices, double[][] matriz, int[]ciudadesRecorridas){
+    public void paintGraph(int numVertex, double[][] matrix, int[]citiesVisited) {
         
         System.setProperty("org.graphstream.ui", "swing");
 	
@@ -31,19 +32,19 @@ public class GraphStream {
 	g.setStrict(false);
 	g.setAutoCreate( true );
 	
-        //Creando nodos al grafo.
-        for (int i = 1; i <= numVertices; i++) {
+        // Se crean y agregan nodos al grafo.
+        for (int i = 1; i <= numVertex; i++) {
             g.addNode(Integer.toString(i));
         }
         
         // Se crea las aristas para cada nodo usando la matriz de Adyacencia para las conexiones
-        for (int i = 0; i < numVertices; i++) {
-            for (int j = i; j < numVertices; j++) {
-                if(matriz[i][j] != 0){
-                    String nodoIni = Integer.toString(i+1);
-                    String nodoFin = Integer.toString(j+1);
-                    String arista = nodoIni+nodoFin;
-                    g.addEdge(arista, nodoIni, nodoFin).setAttribute("length", matriz[i][j]);
+        for (int i = 0; i < numVertex; i++) {
+            for (int j = i; j < numVertex; j++) {
+                if(matrix[i][j] != 0){
+                    String nodeBegin = Integer.toString(i+1);
+                    String nodeFinal = Integer.toString(j+1);
+                    String arista = nodeBegin+nodeFinal;
+                    g.addEdge(arista, nodeBegin, nodeFinal).setAttribute("length", matrix[i][j]);
                 }
             }
         }
@@ -51,13 +52,27 @@ public class GraphStream {
         g.nodes().forEach(n -> n.setAttribute("label", n.getId()));
         g.edges().forEach(e -> e.setAttribute("label", "" + (double) e.getNumber("length")));
         
-        // Se cambia el color a los vertices por donde recorre la hormiga con el vector CiudadesRecorridas.
-        for (int i = 0; i < ciudadesRecorridas.length; i++) {
-            int ciudad = ciudadesRecorridas[i];
-            Node nodo = g.getNode(Integer.toString(ciudad));
-            nodo.setAttribute("ui.class", "root");
-        }
-        
+        // Se cambia el color a los vertices y aristas por donde recorre la hormiga con el vector CiudadesRecorridas.
+        if (citiesVisited != null) {
+            for (int i = 0; citiesVisited[i] != 0 && i < citiesVisited.length; i++) {
+                int ciudad_r = citiesVisited[i];
+                int ciudad_s = citiesVisited[i + 1];
+                int cont_n = 0;
+                
+                
+                Node node_r = g.getNode(Integer.toString(ciudad_r));
+                node_r.setAttribute("ui.class", "root");
+                
+                Node node_s = g.getNode(Integer.toString(ciudad_s));
+                
+                if (node_s != null) {
+                    Edge edge_k = node_r.getEdgeBetween(node_s);
+                    edge_k.setAttribute("ui.style", "fill-color: skyblue;");
+                    cont_n ++;
+                    }
+                }
+            }
+
         //Se visualiza el grafo y se setea la opción de que no cierre el programa por completo.
         Viewer viewer = g.display();
         viewer.setCloseFramePolicy(Viewer.CloseFramePolicy.HIDE_ONLY);
@@ -70,13 +85,13 @@ public class GraphStream {
 		"node {"+
 			"	shape: circle;"+
 			"	size: 40px;"+
-			" text-size: 14;"+
+			"       text-size: 30;"+
 			"	fill-mode: plain;"+
 			"	fill-color: orange;"+
 			"	stroke-mode: plain;"+
-			"	stroke-color: black;"+
-			"	stroke-width: 1px;"+
+			"	stroke-color: brown;"+
+			"	stroke-width: 2.5px;"+
 		"}"+
-		"edge { arrow-shape: arrow; arrow-size: 20px, 4px; }"+
-                "node.root { fill-color: skyblue; }";
+		"edge { arrow-shape: arrow; arrow-size: 20px, 4px; size: 5px; fill-color: orange; text-size: 25; }"+
+                "node.root { fill-color: skyblue; stroke-color: blue;}";
 }
