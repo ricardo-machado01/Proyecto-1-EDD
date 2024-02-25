@@ -24,123 +24,138 @@ public class AddOrDeleteCity extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnEliminarVertice = new javax.swing.JButton();
+        deleteVertex = new javax.swing.JButton();
         ciudadEliminar = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        btnAgregarVertice = new javax.swing.JButton();
+        addVertex = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtAristas = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        text2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setAlwaysOnTop(true);
+        setBackground(new java.awt.Color(255, 255, 255));
         setLocation(new java.awt.Point(0, 0));
-        setMinimumSize(new java.awt.Dimension(380, 635));
+        setMinimumSize(new java.awt.Dimension(725, 410));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnEliminarVertice.setFont(new java.awt.Font("Aspekta", 0, 13)); // NOI18N
-        btnEliminarVertice.setForeground(new java.awt.Color(102, 102, 102));
-        btnEliminarVertice.setText("ELIMINAR");
-        btnEliminarVertice.addActionListener(new java.awt.event.ActionListener() {
+        deleteVertex.setFont(new java.awt.Font("Aspekta", 0, 13)); // NOI18N
+        deleteVertex.setForeground(new java.awt.Color(51, 51, 51));
+        deleteVertex.setText("ACEPTAR");
+        deleteVertex.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEliminarVerticeActionPerformed(evt);
+                deleteVertexActionPerformed(evt);
             }
         });
-        getContentPane().add(btnEliminarVertice, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 520, 100, -1));
-        getContentPane().add(ciudadEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 490, 40, 20));
+        getContentPane().add(deleteVertex, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 190, 100, -1));
+
+        ciudadEliminar.setFont(new java.awt.Font("Aspekta", 1, 13)); // NOI18N
+        ciudadEliminar.setForeground(new java.awt.Color(51, 51, 51));
+        getContentPane().add(ciudadEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 150, 40, 30));
 
         jLabel3.setFont(new java.awt.Font("Aspekta", 2, 13)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("DE LA CIUDAD:");
         jLabel3.setVerifyInputWhenFocusTarget(false);
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 460, 180, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 120, 180, 30));
 
         jLabel4.setFont(new java.awt.Font("Aspekta", 2, 13)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel4.setForeground(new java.awt.Color(51, 51, 51));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("INGRESE EL NÚMERO");
         jLabel4.setVerifyInputWhenFocusTarget(false);
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 440, 160, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 100, 160, 30));
 
-        btnAgregarVertice.setFont(new java.awt.Font("Aspekta", 0, 13)); // NOI18N
-        btnAgregarVertice.setForeground(new java.awt.Color(102, 102, 102));
-        btnAgregarVertice.setText("AGREGAR");
-        btnAgregarVertice.addActionListener(new java.awt.event.ActionListener() {
+        addVertex.setFont(new java.awt.Font("Aspekta", 1, 13)); // NOI18N
+        addVertex.setForeground(new java.awt.Color(51, 51, 51));
+        addVertex.setText("ACEPTAR");
+        addVertex.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarVerticeActionPerformed(evt);
+                addVertexActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAgregarVertice, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, -1, -1));
+        getContentPane().add(addVertex, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 100, -1));
 
         txtAristas.setColumns(20);
+        txtAristas.setFont(new java.awt.Font("Aspekta", 1, 13)); // NOI18N
+        txtAristas.setForeground(new java.awt.Color(51, 51, 51));
         txtAristas.setRows(5);
         jScrollPane2.setViewportView(txtAristas);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, -1, 100));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 260, 100));
 
-        jLabel5.setFont(new java.awt.Font("Aspekta", 2, 10)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Aspekta", 2, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(204, 0, 0));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("DEBE HACER UN SALTO DE LÍNEA!");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, 190, 20));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 240, 20));
 
         jLabel6.setFont(new java.awt.Font("Aspekta", 2, 13)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel6.setForeground(new java.awt.Color(51, 51, 51));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("INDIQUE LAS CONEXIONES CON OTRAS");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 300, 30));
-
-        jLabel7.setFont(new java.awt.Font("Aspekta", 2, 13)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("\"Ciudad destino, Ponderación.\"");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 220, 30));
+        jLabel6.setText("INDIQUE LAS CONEXIONES CON OTRAS CIUDADES ");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 380, 30));
 
         jLabel8.setFont(new java.awt.Font("Aspekta", 2, 13)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel8.setForeground(new java.awt.Color(51, 51, 51));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("CIUDADES EN EL SIGUIENTE FORMATO:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 300, 30));
+        jLabel8.setText("EN EL FORMATO: \"CIUDAD DESTINO, PONDERACIÓN\"");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 380, 30));
 
-        jLabel9.setFont(new java.awt.Font("Aspekta", 2, 10)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Aspekta", 2, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(204, 0, 0));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("EN CASO DE EXISTIR MÁS DE UNA CONEXIÓN");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 170, 260, 20));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 300, 20));
 
-        jLabel1.setFont(new java.awt.Font("Aspekta", 0, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Woodchuck", 0, 28)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("AGREGAR CIUDAD");
         jLabel1.setToolTipText("");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, 250, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, 300, 60));
 
-        jLabel2.setFont(new java.awt.Font("Aspekta", 0, 24)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("ELIMINAR CIUDAD");
-        jLabel2.setToolTipText("");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 390, 240, -1));
+        text2.setFont(new java.awt.Font("Woodchuck", 0, 28)); // NOI18N
+        text2.setForeground(new java.awt.Color(51, 51, 51));
+        text2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        text2.setText("ELIMINAR CIUDAD");
+        text2.setToolTipText("");
+        getContentPane().add(text2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 50, 330, 40));
 
         jButton1.setFont(new java.awt.Font("Aspekta", 0, 13)); // NOI18N
-        jButton1.setText("LISTO");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 590, 80, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, 30, 30));
+        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 320, 70));
+        getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, 310, 20));
+
+        jButton2.setFont(new java.awt.Font("Woodchuck", 0, 18)); // NOI18N
+        jButton2.setText("X");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(682, 10, 30, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnEliminarVerticeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarVerticeActionPerformed
+    private void deleteVertexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteVertexActionPerformed
         if(!"".equalsIgnoreCase(ciudadEliminar.getText())){
             grafo.deleteVertex(Integer.parseInt(ciudadEliminar.getText()) - 1);
             JOptionPane.showMessageDialog(null,"¡Ciudad eliminada con éxito!");
@@ -148,9 +163,9 @@ public class AddOrDeleteCity extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Debes indicar el número de ciudad a eliminar");
         }
         
-    }//GEN-LAST:event_btnEliminarVerticeActionPerformed
+    }//GEN-LAST:event_deleteVertexActionPerformed
 
-    private void btnAgregarVerticeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarVerticeActionPerformed
+    private void addVertexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addVertexActionPerformed
         if(!"".equals(txtAristas.getText())){
             grafo.insertVertex(1);
             String aristas = txtAristas.getText();
@@ -164,13 +179,17 @@ public class AddOrDeleteCity extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(null, "Debe llenar la información de las aristas");
         }
-    }//GEN-LAST:event_btnAgregarVerticeActionPerformed
+    }//GEN-LAST:event_addVertexActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Homescreen v1 = new Homescreen();
         this.setVisible(false);
         v1.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -209,20 +228,22 @@ public class AddOrDeleteCity extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregarVertice;
-    private javax.swing.JButton btnEliminarVertice;
+    private javax.swing.JButton addVertex;
     private javax.swing.JTextField ciudadEliminar;
+    private javax.swing.JButton deleteVertex;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JLabel text2;
     private javax.swing.JTextArea txtAristas;
     // End of variables declaration//GEN-END:variables
 }

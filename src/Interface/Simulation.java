@@ -1,20 +1,23 @@
 package Interface;
 
-// IMPORTAMOS LAS LIBRERIAS NECESARIAS.
+// SE IMPORTAN LAS CLASES Y LIBRERIAS NECESARIAS.
 import EDD.CAnt;
 import EDD.Global;
 import EDD.GrafoMA;
 import javax.swing.JOptionPane;
 
 /**
- * 
+ * ESTA CLASE REPRESENTA LA VENTANA EN DONDE SE EJECUTA LA SIMULACIÓN.
  * @author nicolasplanas
  */
 public class Simulation extends javax.swing.JFrame {
     private GrafoMA grafo = Global.getGrafo();
-    private int[] p;
+    private int[] shortestRoute;
     private double[][] pheromoneQuantity;
 
+    /**
+     *  ESTE ES EL CONSTRUCTOR DE LA CLASE Y NO RECIBE PARÁMETROS.
+     */
     public Simulation() {
         initComponents();
         this.setVisible(rootPaneCheckingEnabled);
@@ -53,18 +56,15 @@ public class Simulation extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         simulation_result = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jamoncito = new javax.swing.JTextArea();
         jLabel10 = new javax.swing.JLabel();
         evaporation_factor = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(900, 475));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Aspekta", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel1.setFont(new java.awt.Font("Woodchuck", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("RESULTADOS");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 10, 340, 40));
@@ -73,11 +73,12 @@ public class Simulation extends javax.swing.JFrame {
         jSeparator1.setFont(new java.awt.Font("Helvetica Neue", 0, 36)); // NOI18N
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 370, 20));
 
-        jLabel3.setFont(new java.awt.Font("Aspekta", 2, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel3.setFont(new java.awt.Font("Aspekta", 2, 15)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("Importancia de la feromona  \"α\":");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 290, 40));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 240, 40));
 
+        pheromone_grade.setFont(new java.awt.Font("Aspekta", 0, 12)); // NOI18N
         pheromone_grade.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         pheromone_grade.setText("1");
         pheromone_grade.addActionListener(new java.awt.event.ActionListener() {
@@ -85,13 +86,14 @@ public class Simulation extends javax.swing.JFrame {
                 pheromone_gradeActionPerformed(evt);
             }
         });
-        getContentPane().add(pheromone_grade, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, 40, -1));
+        getContentPane().add(pheromone_grade, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 110, 40, 20));
 
-        jLabel5.setFont(new java.awt.Font("Aspekta", 2, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel5.setFont(new java.awt.Font("Aspekta", 2, 15)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(51, 51, 51));
         jLabel5.setText("Grado de visibilidad  \"β\":");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 220, 40));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 210, 40));
 
+        visibility_grade.setFont(new java.awt.Font("Aspekta", 0, 12)); // NOI18N
         visibility_grade.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         visibility_grade.setText("2");
         visibility_grade.addActionListener(new java.awt.event.ActionListener() {
@@ -99,13 +101,14 @@ public class Simulation extends javax.swing.JFrame {
                 visibility_gradeActionPerformed(evt);
             }
         });
-        getContentPane().add(visibility_grade, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 40, -1));
+        getContentPane().add(visibility_grade, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 40, 20));
 
-        jLabel6.setFont(new java.awt.Font("Aspekta", 2, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel6.setFont(new java.awt.Font("Aspekta", 2, 15)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(51, 51, 51));
         jLabel6.setText("Ciudad de partida \"nido\":");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 220, 40));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 210, 40));
 
+        r.setFont(new java.awt.Font("Aspekta", 0, 12)); // NOI18N
         r.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         r.setText("0");
         r.addActionListener(new java.awt.event.ActionListener() {
@@ -113,12 +116,12 @@ public class Simulation extends javax.swing.JFrame {
                 rActionPerformed(evt);
             }
         });
-        getContentPane().add(r, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 250, 40, -1));
+        getContentPane().add(r, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 200, 40, 20));
 
         jLabel7.setFont(new java.awt.Font("Aspekta", 2, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel7.setForeground(new java.awt.Color(51, 51, 51));
         jLabel7.setText("Ciudad de  llegada \"comida\":");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 260, 40));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 250, 30));
 
         s.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         s.setText("0");
@@ -127,13 +130,14 @@ public class Simulation extends javax.swing.JFrame {
                 sActionPerformed(evt);
             }
         });
-        getContentPane().add(s, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 290, 40, -1));
+        getContentPane().add(s, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 293, 30, 20));
 
-        jLabel8.setFont(new java.awt.Font("Aspekta", 2, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel8.setFont(new java.awt.Font("Aspekta", 2, 15)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(51, 51, 51));
         jLabel8.setText("Cantidad de hormigas:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 200, 40));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 170, 40));
 
+        ants_amount.setFont(new java.awt.Font("Aspekta", 0, 12)); // NOI18N
         ants_amount.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         ants_amount.setText("0");
         ants_amount.addActionListener(new java.awt.event.ActionListener() {
@@ -141,7 +145,7 @@ public class Simulation extends javax.swing.JFrame {
                 ants_amountActionPerformed(evt);
             }
         });
-        getContentPane().add(ants_amount, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, 40, -1));
+        getContentPane().add(ants_amount, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, 40, 20));
 
         ACA.setFont(new java.awt.Font("Aspekta", 0, 18)); // NOI18N
         ACA.setForeground(new java.awt.Color(102, 102, 102));
@@ -159,9 +163,9 @@ public class Simulation extends javax.swing.JFrame {
         getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-30, 60, 400, 20));
 
         jLabel9.setFont(new java.awt.Font("Aspekta", 2, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel9.setForeground(new java.awt.Color(51, 51, 51));
         jLabel9.setText("Número de ciclos:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 160, 40));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 150, 30));
 
         cycles_input.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         cycles_input.setText("0");
@@ -170,7 +174,7 @@ public class Simulation extends javax.swing.JFrame {
                 cycles_inputActionPerformed(evt);
             }
         });
-        getContentPane().add(cycles_input, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 330, 40, -1));
+        getContentPane().add(cycles_input, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 333, 30, 20));
 
         jButton2.setFont(new java.awt.Font("Aspekta", 0, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(102, 102, 102));
@@ -190,30 +194,26 @@ public class Simulation extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 10, 30, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 10, 30, -1));
 
         simulation_result.setColumns(20);
         simulation_result.setRows(5);
         jScrollPane1.setViewportView(simulation_result);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, 240, 320));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 60, 400, 320));
 
-        jLabel4.setFont(new java.awt.Font("Aspekta", 0, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel4.setFont(new java.awt.Font("Woodchuck", 0, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("CREADOR DE HORMIGAS");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 310, 40));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 360, 40));
 
-        jamoncito.setColumns(20);
-        jamoncito.setRows(5);
-        jScrollPane2.setViewportView(jamoncito);
-
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 60, 230, 320));
-
-        jLabel10.setFont(new java.awt.Font("Aspekta", 2, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel10.setFont(new java.awt.Font("Aspekta", 2, 15)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(51, 51, 51));
         jLabel10.setText("Factor de evaporación \"ρ\":");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 240, 40));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 230, 40));
 
+        evaporation_factor.setFont(new java.awt.Font("Aspekta", 0, 12)); // NOI18N
         evaporation_factor.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         evaporation_factor.setText("0.5");
         evaporation_factor.addActionListener(new java.awt.event.ActionListener() {
@@ -221,15 +221,7 @@ public class Simulation extends javax.swing.JFrame {
                 evaporation_factorActionPerformed(evt);
             }
         });
-        getContentPane().add(evaporation_factor, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 40, -1));
-
-        jButton3.setText("VER MATRIZ");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 400, -1, -1));
+        getContentPane().add(evaporation_factor, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, 40, 20));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -257,7 +249,7 @@ public class Simulation extends javax.swing.JFrame {
     private void ACAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ACAActionPerformed
         this.setVisible(false);
         Homescreen v1 = new Homescreen();
-        v1.setArray(getP());
+        v1.setArray(shortestRoute);
         v1.setVisible(true);
     }//GEN-LAST:event_ACAActionPerformed
 
@@ -267,17 +259,15 @@ public class Simulation extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if ("".equals(r.getText()) || "".equals(s.getText())) {
-            JOptionPane.showMessageDialog(null, "Llene los parámetros obligatorios!");
+            JOptionPane.showMessageDialog(null, "¡Tienes que llenar ambos parámetros de las ciudades!");
         } else {
             try {
-                if (Integer.parseInt(r.getText()) == 0 || Integer.parseInt(s.getText()) == 0) {
-                    JOptionPane.showMessageDialog(null, "¡Una de las ciudades ingresadas no existe!");
-                }else if(Integer.parseInt(r.getText()) > grafo.getNumVertex() || Integer.parseInt(s.getText()) > grafo.getNumVertex()){
-                    JOptionPane.showMessageDialog(null, "¡Una de las ciudades ingresadas no existe!");
-                }else if (Integer.parseInt(r.getText()) < 0 || Integer.parseInt(s.getText()) < 0 || Double.parseDouble(pheromone_grade.getText()) < 0 || Double.parseDouble(visibility_grade.getText()) < 0) {
-                    JOptionPane.showMessageDialog(null, "¡Los valores no pueden ser negativos!");
+                if (Integer.parseInt(r.getText()) <= 0 || Integer.parseInt(r.getText()) > grafo.getNumVertex()) {
+                    JOptionPane.showMessageDialog(null, "¡No existe la ciudad '" + r.getText() + "'!");
+                } else if (Integer.parseInt(s.getText()) <= 0 || Integer.parseInt(s.getText()) > grafo.getNumVertex()) {
+                    JOptionPane.showMessageDialog(null, "¡No existe la ciudad '" + s.getText() + "'!");
                 } else {
-
+                    
                     // VARIABLE STRING PARA EL ÁREA DE TEXTO.
                     String result = "";
                     
@@ -292,90 +282,95 @@ public class Simulation extends javax.swing.JFrame {
 
                     // CANTIDAD DE FEROMONA INICIAL PARA LAS ARISTAS.
                     double ti = 1/m;
-                    
-                    // CANTIDAD DE HORMIGAS PARA LA SIMULACIÓN.
-                    int antsAmount = 0;
-                    
-                    // CANTIDAD DE CICLOS DE LA SIMULACIÓN.
-                    int cycles = 0;
-                    
+
                     // CONTADOR DE CICLOS.
                     int cont_c = 0;
                     
-                    // VALIDAMOS LOS CICLOS.
+                    // CANTIDAD DE HORMIGAS PARA LA SIMULACIÓN.
+                    int antsAmount;
+                    
+                    // CANTIDAD DE CICLOS DE LA SIMULACIÓN.
+                    int cycles;
+                    
                     try {
-                        cycles = Integer.parseInt(cycles_input.getText());
-                        if (cycles <= 0) {
-                            JOptionPane.showMessageDialog(null, "La cantidad de ciclos tiene que ser mayor a '0'!");
-                        }
-                    } catch (Exception e) {
-                        JOptionPane.showMessageDialog(null, "Ingrese una cantidad de ciclos valido!");
-                    }
-                    
-                    // ITERAMOS LA MATRIZ AUXILIAR Y LE INSERTAMOS EL VALOR INCIAL DE FEROMONA EN TODAS SUS POSICIONES.
-                    for (int i = 0; i < grafo.getMaxVertex(); i++) {
-                        for (int j = 0; j < grafo.getMaxVertex(); j++) {
-                            pheromoneQuantity[i][j] = ti;
-                        }
-                    }
+                        // VALIDAMOS EL INPUT DE LA CANTIDAD DE CICLOS.
+                        if (Integer.parseInt(cycles_input.getText()) <= 0) {
+                            JOptionPane.showMessageDialog(null, "¡La cantidad de ciclos tiene que ser mayor a cero!");
+                        } else {
+                            cycles = Integer.parseInt(cycles_input.getText());
 
-                    // VALIDAMOS EL INPUT DE LA CANTIDAD DE HORMIGAS
-                    if ("".equals(ants_amount.getText()) || Integer.parseInt(ants_amount.getText()) <= 0) {
-                        JOptionPane.showMessageDialog(null, result);
-                    } else {
-                        antsAmount = Integer.parseInt(ants_amount.getText());
-                    }
-                    
-                    while (cont_c < cycles) {
-                        double delta_t = 0;
-                        int cont = 0;
-                        result += "\nCICLO #" + (cont_c + 1) + ":\n\n";
-                        while (cont < antsAmount) {
-                            double currentDistance = 0;
-                            CAnt hormiga = new CAnt(grafo, Integer.parseInt(r.getText()), Integer.parseInt(s.getText()));
-                            hormiga.setΑ(Double.parseDouble(pheromone_grade.getText()));
-                            hormiga.setΒ(Double.parseDouble(visibility_grade.getText()));
-                            
-                            // SE DESPLAZA LA HORMIGA EN BASE A LA FÓRMULA DE PROBABILIDAD.
-                            while (hormiga.getR() != hormiga.getS() && hormiga.getTrapped() == false) {
-                                hormiga.movementProbability(grafo, pheromoneQuantity);
-                            }
-
-                            // SE ACTUALIZAN LAS FEROMONA DENTRO DE LA MATRIZ AUXILIAR.
-                            for (int i = 0; i < hormiga.getMovementHistory().length && hormiga.getMovementHistory()[i + 1] != 0; i++) {
-                                int x = hormiga.getMovementHistory()[i] - 1;
-                                int y = hormiga.getMovementHistory()[i + 1] - 1;
-                                double tk = 1/grafo.getMatrixA()[x][y];
-
-                                currentDistance += grafo.getMatrixA()[x][y];
-
-                                if (cont_c == 0) {
-                                    pheromoneQuantity[x][y] += tk;
-                                } else {
-                                    double t_1 = pheromoneQuantity[x][y] - 1/grafo.getMatrixA()[x][y];
-                                    double ρ = Double.parseDouble(evaporation_factor.getText());
-                                    pheromoneQuantity[x][y] += evaporationUpdate(ρ, t_1, delta_t);
+                            // ITERAMOS LA MATRIZ AUXILIAR Y LE INSERTAMOS EL VALOR INCIAL DE FEROMONA EN TODAS SUS POSICIONES.
+                            for (int i = 0; i < grafo.getMaxVertex(); i++) {
+                                for (int j = 0; j < grafo.getMaxVertex(); j++) {
+                                    pheromoneQuantity[i][j] = ti;
                                 }
                             }
 
-                            delta_t += 1/currentDistance;
-                            
-                            // EVALUAMOS LA DISTANCIA MÁS CORTA.
-                            if (shortestDistance == 0 || currentDistance < shortestDistance) {
-                                shortestDistance = currentDistance;
-                                optimalPath = printPath(hormiga);
-                                setP(hormiga.getMovementHistory());
+                            // VALIDAMOS EL INPUT DE LA CANTIDAD DE HORMIGAS
+                            if ("".equals(ants_amount.getText()) || Integer.parseInt(ants_amount.getText()) <= 0) {
+                                JOptionPane.showMessageDialog(null, "¡Número de hormigas inválido!");
+                            } else {
+                                antsAmount = Integer.parseInt(ants_amount.getText());
+
+                            while (cont_c < cycles) {
+
+                                // ESTA VARIABLE REPRESENTA LA SUMATORIA DE "Q/L" PARA TODAS LAS HORMIGAS.
+                                double delta_t = 0;
+
+                                int cont = 0;
+                                result += "\nCICLO #" + (cont_c + 1) + ":\n\n";
+
+                                while (cont < antsAmount) {
+                                    double currentDistance = 0;
+                                    CAnt hormiga = new CAnt(grafo, Integer.parseInt(r.getText()), Integer.parseInt(s.getText()));
+                                    hormiga.setΑ(Double.parseDouble(pheromone_grade.getText()));
+                                    hormiga.setΒ(Double.parseDouble(visibility_grade.getText()));
+
+                                    // SE DESPLAZA LA HORMIGA EN BASE A LA FÓRMULA DE PROBABILIDAD.
+                                    while (hormiga.getR() != hormiga.getSf() && hormiga.getTrapped() == false) {
+                                        hormiga.movementProbability(grafo, pheromoneQuantity);
+                                    }
+
+                                    // SE ACTUALIZAN LAS FEROMONA DENTRO DE LA MATRIZ AUXILIAR.
+                                    for (int i = 0; i < hormiga.getMovementHistory().length && hormiga.getMovementHistory()[i + 1] != 0; i++) {
+                                        int x = hormiga.getMovementHistory()[i] - 1;
+                                        int y = hormiga.getMovementHistory()[i + 1] - 1;
+                                        double tk = 1/grafo.getMatrixA()[x][y];
+
+                                        currentDistance += grafo.getMatrixA()[x][y];
+
+                                        if (cont_c == 0) {
+                                            pheromoneQuantity[x][y] += tk;
+                                        } else {
+                                            double t_1 = pheromoneQuantity[x][y] - 1/grafo.getMatrixA()[x][y];
+                                            double ρ = Double.parseDouble(evaporation_factor.getText());
+                                            pheromoneQuantity[x][y] += evaporationUpdate(ρ, t_1, delta_t);
+                                        }
+                                    }
+
+                                    delta_t += 1/currentDistance;
+
+                                    // EVALUAMOS LA DISTANCIA MÁS CORTA.
+                                    if (shortestDistance == 0 || currentDistance < shortestDistance) {
+                                        shortestDistance = currentDistance;
+                                        optimalPath = printPath(hormiga);
+                                        shortestRoute = hormiga.getMovementHistory();
+                                    }
+                                    result += "HORMIGA " + (cont + 1) + ":\n" + "DISTANCIA RECORRIDA: " + currentDistance + "\n" + printPath(hormiga) + "\n";
+                                    cont ++;
+                                }
+                                cont_c ++;
                             }
-                            result += "HORMIGA " + (cont + 1) + ":\n" + "DISTANCIA RECORRIDA: " + currentDistance + "\n" + printPath(hormiga) + "\n";
-                            cont ++;
+                            result += "RECORRIDO MÁS OPTIMO DE LA SIMULACIÓN: " + optimalPath + "\nDISTANCIA: " + shortestDistance;
+                            simulation_result.setText(result);
+                            }
                         }
-                        cont_c ++;
-                    }
-                    result += "RECORRIDO MÁS OPTIMO DE LA SIMULACIÓN: " + optimalPath + "\nDISTANCIA: " + shortestDistance;
-                    simulation_result.setText(result);
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, "¡Haz ingresado algún valor inválido!");
+                    } 
                 }
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Haz ingresado un valor inválido!");
+                JOptionPane.showMessageDialog(null, "¡Ingrese un valor válido para la ciudad!");
             }
         }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -387,22 +382,10 @@ public class Simulation extends javax.swing.JFrame {
     private void evaporation_factorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_evaporation_factorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_evaporation_factorActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        String matriz = "";
-
-        for (int i = 0; i < grafo.getNumVertex(); i++) {
-            for (int j = 0; j < grafo.getNumVertex(); j++) {
-                matriz += "[" + pheromoneQuantity[i][j] + "]" + " ";
-            }
-            matriz += "\n";
-        }
-        jamoncito.setText(matriz);
-    }//GEN-LAST:event_jButton3ActionPerformed
     
     /**
-     * Este método retorna el recorrido impreso de la 
-     * hormiga en un formato tipo lista.
+     * ESTE MÉTODO RECIBE UN PARÁMETRO Y RETORNA UN 'String'
+     * DEL RECORRIDO DE LA HORMIGA EN UN FORMATO TIPO LISTA.
      * @param hormiga
      * @return 
      */
@@ -427,41 +410,22 @@ public class Simulation extends javax.swing.JFrame {
     return path;
     }
     
+    /**
+     * ESTE MÉTODO RECIBE TRES PARÁMETROS, RETORNA UN 'double' Y ES LA FÓRMULA PARA
+     * CALCULAR LA FEROMONA EN BASE A LA EVAPORACIÓN TRAS LA FINALIZACIÓN DE UN CICLO.
+     * @param p
+     * @param t
+     * @param d_t
+     * @return 
+     */
     private double evaporationUpdate(double p, double t, double d_t) {
         return (1 - p) * t + d_t;
     }
 
-    public void setP(int[] array) {
-        p = array;
-    }
-    
-    public int[] getP() {
-        return p;
-    }
-    
-    private String printP(int[] p) {
-        String pString = "Recorrido: ";
-        
-        for (int i = 0; i < p.length; i++) {
-            if (i == 0) {
-                pString += "[";
-            }
-            if (p[i] != 0) {
-                pString += Integer.toString(p[i]);
-            }
-            if (p[i + 1] != 0) {
-                pString += ",";
-            }
-            else {
-                pString += "]\n";
-                break;
-            }
-        }
-    return pString;
-    }
-    
-    
-
+    /**
+     * ESTE MÉTODO INICIALIZA LA VENTANA Y RECIBE UN PARÁMETRO.
+     * @param args 
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -501,7 +465,6 @@ public class Simulation extends javax.swing.JFrame {
     private javax.swing.JTextField evaporation_factor;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
@@ -512,10 +475,8 @@ public class Simulation extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextArea jamoncito;
     private javax.swing.JTextField pheromone_grade;
     private javax.swing.JTextField r;
     private javax.swing.JTextField s;

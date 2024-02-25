@@ -1,20 +1,30 @@
 package Interface;
 
+// SE IMPORTAN LAS CLASES Y LIBRERIAS NECESARIAS.
 import EDD.GrafoMA;
+import EDD.Global;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import functions.FileChooser;
 import functions.GraphStream;
-import EDD.CAnt;
-import EDD.Global;
 
+/**
+ * ESTA CLASE REPRESENTA LA PÁGINA PRINCIPAL DEL PROGRAMA.
+ * @author nicolasplanas
+ */
 public class Homescreen extends javax.swing.JFrame {
 
+    // GRAFO PARA EL ARCHIVO TXT.
     private GrafoMA grafo = Global.getGrafo();
-    private int[] array;
     
+    // RECORRIDO MÁS CORTO DE LA SIMULACIÓN.
+    private int[] shortestPath;
+    
+    /**
+     * ESTE ES EL CONSTRUCTOR DE LA CLASE Y NO RECIBE PARÁMETROS.
+     */
     public Homescreen() {
         initComponents();
         this.setVisible(true);
@@ -46,96 +56,100 @@ public class Homescreen extends javax.swing.JFrame {
         save_txt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(560, 530));
+        setMinimumSize(new java.awt.Dimension(725, 415));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Aspekta", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel1.setFont(new java.awt.Font("Woodchuck", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("COLONIAS DE HORMIGAS");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, 410, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, 560, -1));
 
-        jLabel3.setFont(new java.awt.Font("Aspekta", 0, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel3.setFont(new java.awt.Font("Woodchuck", 0, 36)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("OPTIMIZACIÓN DE");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 410, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 560, -1));
 
         txtMatriz.setEditable(false);
         txtMatriz.setBackground(new java.awt.Color(255, 255, 255));
         txtMatriz.setColumns(20);
+        txtMatriz.setFont(new java.awt.Font("Aspekta", 1, 13)); // NOI18N
         txtMatriz.setRows(5);
         jScrollPane1.setViewportView(txtMatriz);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 90, 240, 150));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, 300, 190));
 
-        import_txt.setFont(new java.awt.Font("Aspekta", 0, 13)); // NOI18N
-        import_txt.setForeground(new java.awt.Color(102, 102, 102));
+        import_txt.setFont(new java.awt.Font("Aspekta", 0, 14)); // NOI18N
+        import_txt.setForeground(new java.awt.Color(51, 51, 51));
         import_txt.setText("IMPORTAR");
         import_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 import_txtActionPerformed(evt);
             }
         });
-        getContentPane().add(import_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 300, 120, -1));
+        getContentPane().add(import_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 140, 120, 30));
 
-        manage_txt.setFont(new java.awt.Font("Aspekta", 0, 13)); // NOI18N
-        manage_txt.setForeground(new java.awt.Color(102, 102, 102));
+        manage_txt.setFont(new java.awt.Font("Aspekta", 0, 14)); // NOI18N
+        manage_txt.setForeground(new java.awt.Color(51, 51, 51));
         manage_txt.setText("GESTIONAR");
         manage_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 manage_txtActionPerformed(evt);
             }
         });
-        getContentPane().add(manage_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 340, 120, -1));
+        getContentPane().add(manage_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 220, 120, 30));
 
-        create_ants.setFont(new java.awt.Font("Aspekta", 1, 13)); // NOI18N
-        create_ants.setForeground(new java.awt.Color(102, 102, 102));
+        create_ants.setFont(new java.awt.Font("Aspekta", 1, 14)); // NOI18N
+        create_ants.setForeground(new java.awt.Color(51, 51, 51));
         create_ants.setText("SIMULACIÓN");
         create_ants.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 create_antsActionPerformed(evt);
             }
         });
-        getContentPane().add(create_ants, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 380, 120, -1));
+        getContentPane().add(create_ants, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 260, 120, 30));
 
-        show_graph.setFont(new java.awt.Font("Aspekta", 0, 13)); // NOI18N
-        show_graph.setForeground(new java.awt.Color(102, 102, 102));
+        show_graph.setFont(new java.awt.Font("Aspekta", 0, 14)); // NOI18N
+        show_graph.setForeground(new java.awt.Color(51, 51, 51));
         show_graph.setText("VER GRAFO");
         show_graph.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 show_graphActionPerformed(evt);
             }
         });
-        getContentPane().add(show_graph, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 420, 120, -1));
+        getContentPane().add(show_graph, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 300, 120, 30));
 
+        jButton1.setFont(new java.awt.Font("Woodchuck", 0, 18)); // NOI18N
         jButton1.setText("X");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, 30, 30));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 10, 30, 30));
 
-        jLabel2.setFont(new java.awt.Font("Aspekta", 0, 13)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel2.setFont(new java.awt.Font("Aspekta", 3, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(51, 51, 51));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("AL ARCHIVO TXT");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 190, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 360, 300, 50));
 
-        jLabel4.setFont(new java.awt.Font("Aspekta", 0, 13)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel4.setFont(new java.awt.Font("Aspekta", 3, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(51, 51, 51));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("MATRIZ CORRESPONDIENTE");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, 210, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 340, 300, 40));
 
-        save_txt.setText("GUARDAR TXT");
+        save_txt.setFont(new java.awt.Font("Aspekta", 0, 14)); // NOI18N
+        save_txt.setForeground(new java.awt.Color(51, 51, 51));
+        save_txt.setText("GUARDAR");
         save_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 save_txtActionPerformed(evt);
             }
         });
-        getContentPane().add(save_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 460, 120, -1));
+        getContentPane().add(save_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 180, 120, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -184,7 +198,7 @@ public class Homescreen extends javax.swing.JFrame {
         } else {
         GraphStream grafico = new GraphStream();
         int numVertices = grafo.getNumVertex();
-        grafico.paintGraph(numVertices, grafo.getMatrixA(), array);
+        grafico.paintGraph(numVertices, grafo.getMatrixA(), shortestPath);
         }
     }//GEN-LAST:event_show_graphActionPerformed
 
@@ -205,8 +219,27 @@ public class Homescreen extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No haz importado ningún archivo!");
         }
     }//GEN-LAST:event_save_txtActionPerformed
-
+   
     /**
+     * ESTE MÉTODO RETORNA UN VALOR 'GrafoMA' EL CUAL REPRESENTA
+     * EL GRAFO DEL DOCUMENTO TXT.
+     * @return 
+     */
+    public GrafoMA getGrafo() {
+        return grafo;
+    }
+    
+    /**
+     * ESTE MÉTODO RECIBE UN 'int[]' COMO PARÁMETRO Y
+     * SE LO ASIGNA COMO NUEVO VALOR A LA VARIABLE "shortestPath".
+     * @param array 
+     */
+    public void setArray(int[] array) {
+        this.shortestPath = array;
+    }
+    
+    /**
+     * ESTE MÉTODO INICIALIZA LA VENTANA Y RECIBE UN PARÁMETRO.
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -240,14 +273,6 @@ public class Homescreen extends javax.swing.JFrame {
                 new Homescreen().setVisible(true);
             }
         });
-    }
-        
-    public GrafoMA getGrafo() {
-        return grafo;
-    }
-    
-    public void setArray(int[] array) {
-        this.array = array;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
